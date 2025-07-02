@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { ParticleNetwork } from '../effects/particle-network'
 import { useTheme } from 'next-themes'
 

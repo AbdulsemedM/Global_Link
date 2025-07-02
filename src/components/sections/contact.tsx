@@ -37,7 +37,7 @@ export function Contact() {
               Get in Touch
             </h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-              Have questions about our services? We're here to help!
+              Have questions about our services? We&apos;re here to help!
             </p>
           </motion.div>
 
