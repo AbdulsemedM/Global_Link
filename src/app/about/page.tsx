@@ -86,7 +86,7 @@ export default function About() {
                 Our Vision
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-300">
-                To be the world's most trusted logistics partner, known for our commitment to excellence, innovation, and customer success in global trade facilitation.
+                To be the world&apos;s most trusted logistics partner, known for our commitment to excellence, innovation, and customer success in global trade facilitation.
               </p>
             </motion.div>
           </div>

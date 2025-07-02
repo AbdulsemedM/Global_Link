@@ -79,7 +79,7 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="text-xl text-white/90">
-              We're here to help with your logistics needs
+              We&apos;re here to help with your logistics needs
             </p>
           </motion.div>
         </div>
@@ -198,7 +198,7 @@ export default function Contact() {
                 }`}
               >
                 <p className="text-green-800 dark:text-green-200">
-                  Thank you for your message! We'll get back to you soon.
+                  Thank you for your message! We&apos;ll get back to you within 24 hours.
                 </p>
               </motion.div>
             </motion.div>

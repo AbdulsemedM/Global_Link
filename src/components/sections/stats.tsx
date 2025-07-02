@@ -44,7 +44,6 @@ interface CounterProps {
 
 function Counter({ value, suffix = '', duration = 2 }: CounterProps) {
   const counterRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
   const isInView = useInView(counterRef, { once: true });
 
   useEffect(() => {

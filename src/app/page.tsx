@@ -10,6 +10,7 @@ import { Footer } from '@/components/navigation/footer'
 import { TruckIcon, GlobeAltIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
 import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
+import Image from 'next/image'
 
 const features = [
   {
@@ -144,9 +145,11 @@ export default function Home() {
                 <div className="absolute -inset-x-2 -inset-y-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                   <div className="flex items-center mb-6">
-                    <img
+                    <Image
                       src={testimonial.image}
                       alt={testimonial.author}
+                      width={48}
+                      height={48}
                       className="w-12 h-12 rounded-full object-cover"
                     />
                     <div className="ml-4">
@@ -160,7 +163,7 @@ export default function Home() {
                   </div>
                   <blockquote>
                     <p className="text-gray-600 dark:text-gray-300">
-                      "{testimonial.content}"
+                      &ldquo;{testimonial.content}&rdquo;
                     </p>
                   </blockquote>
                 </div>
