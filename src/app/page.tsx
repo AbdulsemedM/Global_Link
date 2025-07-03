@@ -7,52 +7,85 @@ import { Services } from '@/components/sections/services'
 import { Stats } from '@/components/sections/stats'
 import { Contact } from '@/components/sections/contact'
 import { Footer } from '@/components/navigation/footer'
-import { TruckIcon, GlobeAltIcon, ShieldCheckIcon } from '@heroicons/react/24/outline'
+import { BeakerIcon, HomeIcon, CubeIcon, TruckIcon, GlobeAltIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline'
 import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 
 const features = [
   {
-    title: "Global Network",
-    description: "Access our extensive network spanning across continents, ensuring seamless logistics solutions worldwide.",
+    title: "Import Excellence",
+    description: "Comprehensive import solutions for medical supplies, construction materials, vehicles, and petroleum products.",
     icon: GlobeAltIcon,
-    color: "from-blue-500 to-cyan-500",
+    color: "from-green-500 to-green-600",
+    delay: 0.2
   },
   {
-    title: "Fast Delivery",
-    description: "Experience rapid and reliable delivery services with real-time tracking and updates.",
+    title: "Export Expertise",
+    description: "Specialized in coffee and tea export, connecting Ethiopian products with global markets.",
     icon: TruckIcon,
-    color: "from-purple-500 to-pink-500",
+    color: "from-green-600 to-green-700",
+    delay: 0.4
   },
   {
-    title: "Secure Handling",
-    description: "Your cargo's safety is our priority, with comprehensive insurance and secure handling protocols.",
-    icon: ShieldCheckIcon,
-    color: "from-green-500 to-emerald-500",
-  },
+    title: "Wholesale Solutions",
+    description: "Supply of agricultural products, construction materials, and grain products to businesses nationwide.",
+    icon: BuildingStorefrontIcon,
+    color: "from-green-500 to-secondary",
+    delay: 0.6
+  }
 ]
 
 const testimonials = [
   {
-    content: "GlobalLink has transformed our international shipping process. Their efficiency and reliability are unmatched.",
-    author: "Sarah Johnson",
-    role: "CEO, TechCorp International",
+    content: "Angler Trading PLC has been instrumental in our medical supply chain. Their reliability and professionalism are outstanding.",
+    author: "Dr. Sarah Ahmed",
+    role: "Medical Director, Central Hospital",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
   {
-    content: "Outstanding service and professional team. They've helped us expand our business globally with ease.",
-    author: "Michael Chen",
-    role: "Operations Director, Asia Trade Co.",
+    content: "Their expertise in construction materials import has helped us complete projects on time and within budget.",
+    author: "Michael Tesfaye",
+    role: "Project Manager, BuildRight Construction",
     image: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
   },
   {
-    content: "The most reliable logistics partner we've worked with. Their customs expertise is invaluable.",
-    author: "Emma Williams",
-    role: "Import Manager, European Distributors",
+    content: "The quality of agricultural products and their wholesale services have exceeded our expectations.",
+    author: "Emma Bekele",
+    role: "Procurement Manager, AgriGrow Ltd",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
+  }
 ]
+
+const services = [
+  { icon: BeakerIcon, name: "Medical Supplies", color: "from-green-400 to-green-500" },
+  { icon: HomeIcon, name: "Construction Materials", color: "from-green-500 to-green-600" },
+  { icon: CubeIcon, name: "Petroleum Products", color: "from-green-600 to-green-700" },
+  { icon: TruckIcon, name: "Vehicle Import", color: "from-green-500 to-secondary" },
+  { icon: GlobeAltIcon, name: "Coffee & Tea Export", color: "from-secondary to-green-600" },
+  { icon: BuildingStorefrontIcon, name: "Wholesale Trade", color: "from-secondary to-secondary/80" }
+]
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
 
 export default function Home() {
   const { theme } = useTheme()
@@ -75,10 +108,10 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Why Choose GlobalLink?
+              Why Choose <span className="text-green-500">Angler Trading</span>?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Experience the difference with our comprehensive logistics solutions
+              Your trusted partner in international trade and wholesale distribution
             </p>
           </motion.div>
 
@@ -89,8 +122,9 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative group"
+                transition={{ duration: 0.5, delay: feature.delay }}
+                className="relative group cursor-pointer"
+                whileHover={{ scale: 1.02 }}
               >
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
@@ -125,24 +159,28 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              What Our Clients Say
+              Client Success Stories
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Trusted by businesses worldwide for reliable logistics solutions
+              See how we've helped businesses across different sectors
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.author}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative"
+                variants={itemVariants}
+                className="relative group"
+                whileHover={{ scale: 1.02 }}
               >
-                <div className="absolute -inset-x-2 -inset-y-4 bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute -inset-x-2 -inset-y-4 bg-gradient-to-r from-green-500/5 to-secondary/5 dark:from-green-500/10 dark:to-secondary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
                   <div className="flex items-center mb-6">
                     <Image
@@ -169,11 +207,11 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Partners Section */}
+      {/* Services Overview */}
       <section className="w-full py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container">
           <motion.div
@@ -184,31 +222,33 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Global Partners
+              Our Services Overview
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Working with industry leaders to deliver excellence
+              Comprehensive solutions for your business needs
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
           >
-            {[...Array(8)].map((_, index) => (
+            {services.map((service, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-32 h-32 bg-white dark:bg-gray-700 rounded-xl shadow-md flex items-center justify-center p-4"
+                key={service.name}
+                variants={itemVariants}
+                className="group relative"
+                whileHover={{ scale: 1.05 }}
               >
-                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                  P{index + 1}
+                <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                <div className="relative bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 flex flex-col items-center justify-center aspect-square group-hover:shadow-lg transition-shadow duration-300">
+                  <service.icon className="w-8 h-8 text-green-500 mb-3 group-hover:text-secondary transition-colors" />
+                  <p className="text-sm font-medium text-gray-900 dark:text-white text-center">
+                    {service.name}
+                  </p>
                 </div>
               </motion.div>
             ))}

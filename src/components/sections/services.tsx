@@ -1,26 +1,41 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { TruckIcon, GlobeAltIcon, DocumentCheckIcon } from '@heroicons/react/24/outline'
+import { BuildingStorefrontIcon, TruckIcon, GlobeAltIcon, CubeIcon, BeakerIcon, HomeIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { ParticleNetwork } from '../effects/particle-network'
 import { useTheme } from 'next-themes'
 
 const services = [
   {
     title: 'Import Services',
-    description: 'Streamlined import solutions with customs clearance, documentation, and logistics management.',
+    description: 'Comprehensive import solutions including medical supplies, construction materials, vehicles, and petroleum products.',
     icon: GlobeAltIcon,
   },
   {
     title: 'Export Services',
-    description: 'End-to-end export handling including documentation, compliance, and international shipping.',
+    description: 'Specialized in coffee and tea export, connecting Ethiopian products with global markets.',
     icon: TruckIcon,
   },
   {
-    title: 'Customs Clearance',
-    description: 'Expert customs clearance services ensuring smooth and compliant international trade.',
-    icon: DocumentCheckIcon,
+    title: 'Wholesale Trade',
+    description: 'Supply of agricultural products, construction materials, and grain products to businesses.',
+    icon: BuildingStorefrontIcon,
   },
+  {
+    title: 'Construction Materials',
+    description: 'Retail and wholesale of construction materials, hardware, metals, and plumbing equipment.',
+    icon: HomeIcon,
+  },
+  {
+    title: 'Medical Supplies',
+    description: 'Import and distribution of human medicines, medical supplies, and equipment.',
+    icon: BeakerIcon,
+  },
+  {
+    title: 'Petroleum Products',
+    description: 'Import and distribution of natural gas, petroleum products, and related materials.',
+    icon: CubeIcon,
+  }
 ]
 
 const containerVariants = {
@@ -71,7 +86,7 @@ export function Services() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300"
           >
-            Comprehensive logistics solutions tailored to your business needs
+            Comprehensive trading solutions for diverse business needs
           </motion.p>
         </div>
 
@@ -82,22 +97,21 @@ export function Services() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={cardVariants}
-              className="relative group"
+              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
-                <service.icon className="w-12 h-12 text-blue-500 mb-6" />
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {service.description}
-                </p>
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 mb-4">
+                <service.icon className="w-6 h-6 text-primary dark:text-primary" />
               </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                {service.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {service.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>

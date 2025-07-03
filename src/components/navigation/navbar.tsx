@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SunIcon, MoonIcon, Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -42,9 +43,16 @@ export function Navbar() {
             transition={{ duration: 0.5 }}
             className="flex-shrink-0"
           >
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                GlobalLink
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/images/logo.png"
+                alt="Angler Trading PLC"
+                width={40}
+                height={40}
+                className="w-10 h-10 object-contain"
+              />
+              <span className="text-xl font-bold text-gray-900 dark:text-white">
+                Angler Trading
               </span>
             </Link>
           </motion.div>
