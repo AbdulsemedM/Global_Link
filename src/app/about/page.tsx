@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
-import Image from 'next/image'
 import { ShieldCheckIcon, LightBulbIcon, UsersIcon, SparklesIcon, GlobeAltIcon, ScaleIcon } from '@heroicons/react/24/outline'
 
 const fadeInUp = {

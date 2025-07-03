@@ -52,7 +52,7 @@ export default function Contact() {
               Get in <span className="text-green-500">Touch</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              We're here to help and answer any questions you might have
+              We&apos;re here to help and answer any questions you might have
             </p>
           </motion.div>
         </div>
