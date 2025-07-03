@@ -1,120 +1,93 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { BuildingStorefrontIcon, TruckIcon, GlobeAltIcon, CubeIcon, BeakerIcon, HomeIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
-import { ParticleNetwork } from '../effects/particle-network'
-import { useTheme } from 'next-themes'
+import { BeakerIcon, HomeIcon, CubeIcon, TruckIcon, GlobeAltIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline'
 
 const services = [
   {
-    title: 'Import Services',
-    description: 'Comprehensive import solutions including medical supplies, construction materials, vehicles, and petroleum products.',
-    icon: GlobeAltIcon,
-  },
-  {
-    title: 'Export Services',
-    description: 'Specialized in coffee and tea export, connecting Ethiopian products with global markets.',
-    icon: TruckIcon,
-  },
-  {
-    title: 'Wholesale Trade',
-    description: 'Supply of agricultural products, construction materials, and grain products to businesses.',
-    icon: BuildingStorefrontIcon,
-  },
-  {
-    title: 'Construction Materials',
-    description: 'Retail and wholesale of construction materials, hardware, metals, and plumbing equipment.',
-    icon: HomeIcon,
-  },
-  {
-    title: 'Medical Supplies',
-    description: 'Import and distribution of human medicines, medical supplies, and equipment.',
     icon: BeakerIcon,
+    title: "Medical Supplies",
+    description: "Import and distribution of medical supplies, equipment, and pharmaceuticals.",
+    color: "from-green-400 to-green-500"
   },
   {
-    title: 'Petroleum Products',
-    description: 'Import and distribution of natural gas, petroleum products, and related materials.',
+    icon: HomeIcon,
+    title: "Construction Materials",
+    description: "Comprehensive supply of construction materials and hardware.",
+    color: "from-green-500 to-green-600"
+  },
+  {
     icon: CubeIcon,
+    title: "Petroleum Products",
+    description: "Import and distribution of petroleum products and natural gas.",
+    color: "from-green-600 to-green-700"
+  },
+  {
+    icon: TruckIcon,
+    title: "Vehicle Import",
+    description: "Professional vehicle importation services and solutions.",
+    color: "from-green-500 to-secondary"
+  },
+  {
+    icon: GlobeAltIcon,
+    title: "Coffee & Tea Export",
+    description: "Export of premium Ethiopian coffee and tea to global markets.",
+    color: "from-secondary to-green-600"
+  },
+  {
+    icon: BuildingOfficeIcon,
+    title: "Wholesale Trade",
+    description: "Large-scale distribution of products to businesses nationwide.",
+    color: "from-secondary to-secondary/80"
   }
 ]
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 20,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-    },
-  },
-}
-
 export function Services() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-
   return (
-    <section className="relative py-24 bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <ParticleNetwork isDark={isDark} />
-      <div className="container px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4"
-          >
-            Our Services
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300"
-          >
-            Comprehensive trading solutions for diverse business needs
-          </motion.p>
-        </div>
-
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="container">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
         >
-          {services.map((service, index) => (
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Our Services
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Comprehensive solutions for your business needs
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service) => (
             <motion.div
               key={service.title}
-              variants={cardVariants}
-              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="group"
             >
-              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-primary/10 dark:bg-primary/20 mb-4">
-                <service.icon className="w-6 h-6 text-primary dark:text-primary" />
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg h-full relative overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                <div className="relative z-10">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500/10 to-secondary/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 dark:group-hover:bg-green-500/30 transition-colors">
+                    <service.icon className="w-6 h-6 text-green-500 group-hover:text-secondary transition-colors" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    {service.description}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                {service.description}
-              </p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
