@@ -5,12 +5,6 @@ import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
 import { ShieldCheckIcon, LightBulbIcon, UsersIcon, SparklesIcon, GlobeAltIcon, ScaleIcon } from '@heroicons/react/24/outline'
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5 }
-}
-
 const values = [
   {
     icon: ShieldCheckIcon,
