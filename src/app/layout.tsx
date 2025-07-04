@@ -1,37 +1,32 @@
+import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
-import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
 
-const inter = Inter({
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const poppins = Poppins({ 
   subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-poppins',
-  display: 'swap',
+  variable: '--font-poppins'
 })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Angler Trading PLC',
-  description: 'Leading import/export and wholesale trading company in Ethiopia',
+  description: 'Your trusted partner in import, export, and wholesale trade.',
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${poppins.variable}`}>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

@@ -162,7 +162,7 @@ export default function Home() {
               Client Success Stories
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              We&apos;ve helped businesses across different sectors
+              See how we&apos;ve helped businesses across different sectors
             </p>
           </motion.div>
 
