@@ -78,7 +78,7 @@ export function Hero() {
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  href="#services"
+                  href="services"
                   className="inline-flex items-center px-8 py-4 rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-medium group"
                 >
                   Explore Services

@@ -87,7 +87,7 @@ export function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200"
+              className="p-2 rounded-full border-2 border-secondary text-secondary hover:bg-secondary/5 transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (

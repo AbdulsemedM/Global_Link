@@ -98,7 +98,7 @@ export function Footer() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                className="w-full px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg transition-all duration-300"
               >
                 Subscribe
               </motion.button>
@@ -107,7 +107,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} GlobalLink Logistics. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Angler Trading PLC. All rights reserved.</p>
         </div>
       </div>
     </footer>

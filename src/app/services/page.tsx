@@ -243,7 +243,7 @@ export default function Services() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="/contact"
-                className="inline-block px-8 py-3 bg-white text-green-500 font-medium rounded-lg hover:bg-white/90 transition-colors"
+                className="inline-block px-8 py-3 border-2 border-secondary text-secondary font-medium rounded-lg hover:bg-secondary/5 transition-colors"
               >
                 Contact Us
               </motion.a>
