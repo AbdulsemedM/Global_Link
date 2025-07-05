@@ -136,7 +136,7 @@ export default function Services() {
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
                 "name": service.title + " Catalog",
-                "itemListElement": service.features.map((feature, featureIndex) => ({
+                "itemListElement": service.features.map((feature) => ({
                   "@type": "Offer",
                   "itemOffered": {
                     "@type": "Service",

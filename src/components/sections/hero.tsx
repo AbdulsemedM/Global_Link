@@ -1,11 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { Globe, TrendingUp, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { TrendingUp, ArrowRight } from "lucide-react"
+import { Button } from "../ui/button"
 
 export function Hero() {
   const [animationPhase, setAnimationPhase] = useState(0)
@@ -20,7 +19,7 @@ export function Hero() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+    <div className={`min-h-screen relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-black via-gray-900 to-black' : 'bg-gradient-to-br from-white via-gray-50 to-gray-100'}`}>
       {/* Enhanced Animated Background Carousel */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Background Image Carousel */}
@@ -32,16 +31,16 @@ export function Hero() {
                 src="/images/hero/oil-trading.jpeg"
                 alt="Oil Trading with Global Market Data"
                 fill
-                className="object-cover opacity-25"
+                className={`object-cover ${isDark ? 'opacity-25' : 'opacity-15'}`}
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/50"></div>
+              <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-black/95 via-black/70 to-black/50' : 'bg-gradient-to-r from-white/90 via-white/70 to-white/50'}`}></div>
               {/* Animated Trade Elements for Oil */}
               <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/4 w-8 h-12 bg-gradient-to-b from-orange-600 to-orange-800 rounded animate-float opacity-60"></div>
-                <div className="absolute top-1/3 right-1/3 w-6 h-10 bg-gradient-to-b from-orange-500 to-orange-700 rounded animate-float-delayed opacity-60"></div>
-                <div className="absolute top-1/5 left-1/4 text-lime-400 text-sm font-bold animate-pulse">$78.50</div>
-                <div className="absolute top-1/3 left-1/3 text-lime-400 text-sm font-bold animate-pulse delay-500">+2.3%</div>
+                <div className={`absolute top-1/4 right-1/4 w-8 h-12 bg-gradient-to-b from-orange-600 to-orange-800 rounded animate-float ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
+                <div className={`absolute top-1/3 right-1/3 w-6 h-10 bg-gradient-to-b from-orange-500 to-orange-700 rounded animate-float-delayed ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
+                <div className={`absolute top-1/5 left-1/4 text-sm font-bold animate-pulse ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>$78.50</div>
+                <div className={`absolute top-1/3 left-1/3 text-sm font-bold animate-pulse delay-500 ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>+2.3%</div>
               </div>
             </div>
           </div>
@@ -53,18 +52,18 @@ export function Hero() {
                 src="/images/hero/medical-supplies.jpg"
                 alt="Medical Supplies and Equipment"
                 fill
-                className="object-cover opacity-25"
+                className={`object-cover ${isDark ? 'opacity-25' : 'opacity-15'}`}
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/50"></div>
+              <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-black/95 via-black/70 to-black/50' : 'bg-gradient-to-r from-white/90 via-white/70 to-white/50'}`}></div>
               {/* Animated Medical Elements */}
               <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-1/3 w-6 h-6 opacity-60">
-                  <div className="absolute top-1/2 left-0 w-full h-1 bg-lime-400 transform -translate-y-1/2 animate-pulse"></div>
-                  <div className="absolute left-1/2 top-0 w-1 h-full bg-lime-400 transform -translate-x-1/2 animate-pulse"></div>
+                <div className={`absolute top-1/4 right-1/3 w-6 h-6 ${isDark ? 'opacity-60' : 'opacity-40'}`}>
+                  <div className={`absolute top-1/2 left-0 w-full h-1 transform -translate-y-1/2 animate-pulse ${isDark ? 'bg-lime-400' : 'bg-lime-600'}`}></div>
+                  <div className={`absolute left-1/2 top-0 w-1 h-full transform -translate-x-1/2 animate-pulse ${isDark ? 'bg-lime-400' : 'bg-lime-600'}`}></div>
                 </div>
-                <div className="absolute bottom-1/3 left-1/4 w-3 h-6 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full animate-float opacity-60"></div>
-                <div className="absolute bottom-1/4 left-1/3 w-2 h-4 bg-gradient-to-b from-white to-gray-200 rounded-full animate-float-delayed opacity-60"></div>
+                <div className={`absolute bottom-1/3 left-1/4 w-3 h-6 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full animate-float ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
+                <div className={`absolute bottom-1/4 left-1/3 w-2 h-4 bg-gradient-to-b from-white to-gray-200 rounded-full animate-float-delayed ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
               </div>
             </div>
           </div>
@@ -76,15 +75,15 @@ export function Hero() {
                 src="/images/hero/global-trade.jpg"
                 alt="Global Trade Network"
                 fill
-                className="object-cover opacity-25"
+                className={`object-cover ${isDark ? 'opacity-25' : 'opacity-15'}`}
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/50"></div>
+              <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-black/95 via-black/70 to-black/50' : 'bg-gradient-to-r from-white/90 via-white/70 to-white/50'}`}></div>
               {/* Animated Trade Elements */}
               <div className="absolute inset-0">
-                <div className="absolute top-1/4 left-1/4 w-16 h-1 bg-lime-400 rounded animate-pulse opacity-60"></div>
-                <div className="absolute top-1/3 left-1/4 w-12 h-1 bg-lime-400 rounded animate-pulse opacity-60 delay-200"></div>
-                <div className="absolute top-2/5 left-1/4 w-20 h-1 bg-lime-400 rounded animate-pulse opacity-60 delay-400"></div>
+                <div className={`absolute top-1/4 left-1/4 w-16 h-1 rounded animate-pulse opacity-60 ${isDark ? 'bg-lime-400' : 'bg-lime-600'}`}></div>
+                <div className={`absolute top-1/3 left-1/4 w-12 h-1 rounded animate-pulse opacity-60 delay-200 ${isDark ? 'bg-lime-400' : 'bg-lime-600'}`}></div>
+                <div className={`absolute top-2/5 left-1/4 w-20 h-1 rounded animate-pulse opacity-60 delay-400 ${isDark ? 'bg-lime-400' : 'bg-lime-600'}`}></div>
               </div>
             </div>
           </div>
@@ -96,14 +95,14 @@ export function Hero() {
                 src="/images/hero/energy-sector.jpg"
                 alt="Energy Sector Trading"
                 fill
-                className="object-cover opacity-25"
+                className={`object-cover ${isDark ? 'opacity-25' : 'opacity-15'}`}
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/70 to-black/50"></div>
+              <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-black/95 via-black/70 to-black/50' : 'bg-gradient-to-r from-white/90 via-white/70 to-white/50'}`}></div>
               {/* Animated Energy Elements */}
               <div className="absolute inset-0">
-                <div className="absolute bottom-1/3 right-1/4 text-lime-400 text-xs font-bold animate-pulse">CRUDE +1.2%</div>
-                <div className="absolute bottom-1/4 right-1/3 text-lime-400 text-xs font-bold animate-pulse delay-700">BRENT $82.15</div>
+                <div className={`absolute bottom-1/3 right-1/4 text-xs font-bold animate-pulse ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>CRUDE +1.2%</div>
+                <div className={`absolute bottom-1/4 right-1/3 text-xs font-bold animate-pulse delay-700 ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>BRENT $82.15</div>
               </div>
             </div>
           </div>
@@ -112,15 +111,15 @@ export function Hero() {
         {/* Floating Trade Elements */}
         <div className="absolute inset-0">
           {/* Global Connection Lines */}
-          <svg className="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 1200 800">
+          <svg className={`absolute inset-0 w-full h-full ${isDark ? 'opacity-40' : 'opacity-30'}`} viewBox="0 0 1200 800">
             <defs>
-              <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#76ff03" stopOpacity="0" />
-                <stop offset="50%" stopColor="#76ff03" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#76ff03" stopOpacity="0" />
+              <linearGradient id={isDark ? "connectionGradient" : "connectionGradientLight"} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor={isDark ? "#76ff03" : "#65a30d"} stopOpacity="0" />
+                <stop offset="50%" stopColor={isDark ? "#76ff03" : "#65a30d"} stopOpacity="0.8" />
+                <stop offset="100%" stopColor={isDark ? "#76ff03" : "#65a30d"} stopOpacity="0" />
               </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+              <filter id={isDark ? "glow" : "glowLight"}>
+                <feGaussianBlur stdDeviation={isDark ? "3" : "2"} result="coloredBlur" />
                 <feMerge>
                   <feMergeNode in="coloredBlur" />
                   <feMergeNode in="SourceGraphic" />
@@ -131,19 +130,19 @@ export function Hero() {
             {/* World Trade Routes */}
             <path
               d="M 100 300 Q 400 200 800 300 Q 1000 350 1100 300"
-              stroke="url(#connectionGradient)"
+              stroke={`url(#${isDark ? "connectionGradient" : "connectionGradientLight"})`}
               strokeWidth="2"
               fill="none"
               className="animate-pulse"
-              filter="url(#glow)"
+              filter={`url(#${isDark ? "glow" : "glowLight"})`}
             />
             <path
               d="M 100 500 Q 300 400 600 500 Q 900 550 1100 500"
-              stroke="url(#connectionGradient)"
+              stroke={`url(#${isDark ? "connectionGradient" : "connectionGradientLight"})`}
               strokeWidth="2"
               fill="none"
               className="animate-pulse delay-1000"
-              filter="url(#glow)"
+              filter={`url(#${isDark ? "glow" : "glowLight"})`}
             />
 
             {/* Trade Hubs */}
@@ -161,10 +160,10 @@ export function Hero() {
                 cx={hub.x}
                 cy={hub.y}
                 r="4"
-                fill="#76ff03"
+                fill={isDark ? "#76ff03" : "#65a30d"}
                 className="animate-ping"
                 style={{ animationDelay: `${i * 0.3}s` }}
-                filter="url(#glow)"
+                filter={`url(#${isDark ? "glow" : "glowLight"})`}
               />
             ))}
           </svg>
@@ -177,31 +176,46 @@ export function Hero() {
           {/* Left Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="inline-flex items-center space-x-2 bg-lime-400/20 backdrop-blur-sm rounded-full px-4 py-2 text-lime-400 text-sm border border-lime-400/30 shadow-lg shadow-lime-400/10">
+              <div className={`inline-flex items-center space-x-2 backdrop-blur-sm rounded-full px-4 py-2 text-sm border shadow-lg ${
+                isDark 
+                  ? 'bg-lime-400/20 text-lime-400 border-lime-400/30 shadow-lime-400/10'
+                  : 'bg-lime-100 text-lime-700 border-lime-300 shadow-lime-200/50'
+              }`}>
                 <TrendingUp className="w-4 h-4" />
                 <span className="font-medium">Global Trade Solutions</span>
               </div>
 
-              <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+              <h1 className={`text-5xl lg:text-7xl font-bold leading-tight ${isDark ? 'text-white' : 'text-gray-800'}`}>
                 Connect{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-lime-300 drop-shadow-lg">
+                <span className={`text-transparent bg-clip-text bg-gradient-to-r ${
+                  isDark 
+                    ? 'from-lime-400 to-lime-300 drop-shadow-lg'
+                    : 'from-lime-600 to-lime-500 drop-shadow-sm'
+                }`}>
                   Markets
                 </span>
                 <br />
-                <span className="text-lime-400">Worldwide</span>
+                <span className={isDark ? 'text-lime-400' : 'text-lime-600'}>Worldwide</span>
               </h1>
 
-              <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+              <p className={`text-xl leading-relaxed max-w-lg ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
                 Your trusted partner in international trade. We facilitate seamless import, export, and wholesale
                 operations across global markets with{" "}
-                <span className="text-lime-400 font-semibold">unmatched reliability</span> and expertise.
+                <span className={`font-semibold ${isDark ? 'text-lime-400' : 'text-lime-700'}`}>
+                  unmatched reliability
+                </span>{" "}
+                and expertise.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-lime-400 to-lime-500 hover:from-lime-500 hover:to-lime-600 text-black px-8 py-4 text-lg font-bold shadow-lg shadow-lime-400/25 hover:shadow-lime-400/50 transition-all duration-300 transform hover:scale-105"
+                className={`px-8 py-4 text-lg font-bold shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                  isDark
+                    ? 'bg-gradient-to-r from-lime-400 to-lime-500 hover:from-lime-500 hover:to-lime-600 text-black shadow-lime-400/25 hover:shadow-lime-400/50'
+                    : 'bg-gradient-to-r from-lime-500 to-lime-600 hover:from-lime-600 hover:to-lime-700 text-white shadow-lime-500/25 hover:shadow-lime-500/50'
+                }`}
               >
                 Start Trading
                 <ArrowRight className="w-5 h-5 ml-2" />
@@ -209,7 +223,11 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-black px-8 py-4 text-lg bg-transparent font-medium shadow-lg shadow-lime-400/10 hover:shadow-lime-400/25 transition-all duration-300"
+                className={`px-8 py-4 text-lg bg-transparent font-medium shadow-lg transition-all duration-300 ${
+                  isDark
+                    ? 'border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-black shadow-lime-400/10 hover:shadow-lime-400/25'
+                    : 'border-lime-500 text-lime-700 hover:bg-lime-500 hover:text-white shadow-lime-200/50 hover:shadow-lime-500/25'
+                }`}
               >
                 View Services
               </Button>
@@ -218,22 +236,28 @@ export function Hero() {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8">
               <div className="text-center group">
-                <div className="text-3xl font-bold text-lime-400 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-3xl font-bold group-hover:scale-110 transition-transform duration-300 ${
+                  isDark ? 'text-lime-400' : 'text-lime-600'
+                }`}>
                   150+
                 </div>
-                <div className="text-gray-400 text-sm">Countries</div>
+                <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Countries</div>
               </div>
               <div className="text-center group">
-                <div className="text-3xl font-bold text-lime-400 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-3xl font-bold group-hover:scale-110 transition-transform duration-300 ${
+                  isDark ? 'text-lime-400' : 'text-lime-600'
+                }`}>
                   50K+
                 </div>
-                <div className="text-gray-400 text-sm">Shipments</div>
+                <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Shipments</div>
               </div>
               <div className="text-center group">
-                <div className="text-3xl font-bold text-lime-400 group-hover:scale-110 transition-transform duration-300">
+                <div className={`text-3xl font-bold group-hover:scale-110 transition-transform duration-300 ${
+                  isDark ? 'text-lime-400' : 'text-lime-600'
+                }`}>
                   25+
                 </div>
-                <div className="text-gray-400 text-sm">Years</div>
+                <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Years</div>
               </div>
             </div>
           </div>
@@ -242,8 +266,8 @@ export function Hero() {
           <div className="relative">
             <div className="relative w-full h-96 lg:h-[500px] flex items-center justify-center">
               <div className="text-center space-y-4">
-                <div className="text-6xl font-bold text-lime-400/20">TRADE</div>
-                <div className="text-2xl text-white/60">Connecting Global Markets</div>
+                <div className={`text-6xl font-bold ${isDark ? 'text-lime-400/20' : 'text-lime-200'}`}>TRADE</div>
+                <div className={`text-2xl ${isDark ? 'text-white/60' : 'text-gray-400'}`}>Connecting Global Markets</div>
               </div>
             </div>
           </div>

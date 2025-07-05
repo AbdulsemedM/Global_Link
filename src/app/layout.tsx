@@ -104,7 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <ScrollProgress color="#3B82F6" height={3} />
           <ScrollToTop color="#3B82F6" />
           

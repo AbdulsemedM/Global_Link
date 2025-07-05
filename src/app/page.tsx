@@ -203,7 +203,7 @@ export default function Home() {
               Trusted by Industry Leaders
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              See how we've helped businesses across different sectors achieve their goals through our comprehensive trading solutions
+              See how we&apos;ve helped businesses across different sectors achieve their goals through our comprehensive trading solutions
             </p>
           </motion.div>
 
@@ -214,7 +214,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
           >
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.author}
                 variants={itemVariants}
