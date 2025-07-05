@@ -12,54 +12,54 @@ const services = [
     description: 'Comprehensive import solutions including medical supplies, construction materials, vehicles, and petroleum products.',
     longDescription: 'We facilitate seamless import operations with our extensive network of global suppliers. Our expertise covers a wide range of products including medical supplies, construction materials, vehicles, and petroleum products. We handle all aspects of the import process, from sourcing to delivery.',
     icon: GlobeAltIcon,
-    image: '/images/services/import-services.jpg',
+    image: '/images/services/import-export.svg',
     features: ['Global Supplier Network', 'Custom Clearance', 'Quality Assurance', 'Logistics Management'],
-    color: 'from-blue-500 to-blue-600'
+    color: 'from-blue-500 via-purple-500 to-pink-500'
   },
   {
     title: 'Export Services',
     description: 'Specialized in coffee and tea export, connecting Ethiopian products with global markets.',
     longDescription: 'We bridge Ethiopian excellence with international markets, specializing in the export of premium coffee, tea, and other agricultural products. Our export services ensure that the finest Ethiopian products reach global consumers while maintaining their exceptional quality.',
     icon: TruckIcon,
-    image: '/images/services/export-services.jpg',
+    image: '/images/services/import-export.svg',
     features: ['Market Access', 'Quality Control', 'Export Documentation', 'Shipping Solutions'],
-    color: 'from-green-500 to-green-600'
+    color: 'from-green-500 via-teal-500 to-blue-500'
   },
   {
     title: 'Wholesale Trade',
     description: 'Supply of agricultural products, construction materials, and grain products to businesses.',
     longDescription: 'Our wholesale division provides businesses with reliable access to high-quality products at competitive prices. We maintain extensive inventory of agricultural products, construction materials, and grain products, ensuring consistent supply for our business partners.',
     icon: BuildingStorefrontIcon,
-    image: '/images/services/wholesale-trade.jpg',
+    image: '/images/services/wholesale.svg',
     features: ['Bulk Supply', 'Competitive Pricing', 'Regular Supply', 'Business Support'],
-    color: 'from-yellow-500 to-yellow-600'
+    color: 'from-orange-500 via-amber-500 to-yellow-500'
   },
   {
     title: 'Construction Materials',
     description: 'Retail and wholesale of construction materials, hardware, metals, and plumbing equipment.',
     longDescription: 'We are a leading supplier of construction materials, offering both retail and wholesale solutions. Our comprehensive range includes hardware, metals, plumbing equipment, and other essential construction supplies, backed by technical expertise and reliable delivery.',
     icon: HomeIcon,
-    image: '/images/services/construction-materials.jpg',
+    image: '/images/services/construction.svg',
     features: ['Quality Products', 'Technical Support', 'Delivery Service', 'Project Consultation'],
-    color: 'from-orange-500 to-orange-600'
+    color: 'from-cyan-500 via-blue-500 to-indigo-500'
   },
   {
     title: 'Medical Supplies',
     description: 'Import and distribution of human medicines, medical supplies, and equipment.',
     longDescription: 'We are committed to supporting healthcare providers with reliable access to quality medical supplies. Our range includes human medicines, medical equipment, and essential healthcare supplies, all meeting international quality standards and regulatory requirements.',
     icon: BeakerIcon,
-    image: '/images/services/medical-supplies.jpg',
+    image: '/images/services/medical.svg',
     features: ['Quality Assurance', 'Regulatory Compliance', 'Emergency Supply', 'Healthcare Support'],
-    color: 'from-red-500 to-red-600'
+    color: 'from-red-500 via-rose-500 to-pink-500'
   },
   {
     title: 'Petroleum Products',
     description: 'Import and distribution of natural gas, petroleum products, and related materials.',
     longDescription: 'Our energy division specializes in the import and distribution of petroleum products, natural gas, and related materials. We ensure reliable supply chains and maintain the highest safety standards in handling and distribution of energy products.',
     icon: CubeIcon,
-    image: '/images/services/petroleum-products.jpg',
+    image: '/images/services/petroleum.svg',
     features: ['Safety Standards', 'Supply Chain', 'Storage Solutions', 'Distribution Network'],
-    color: 'from-purple-500 to-purple-600'
+    color: 'from-violet-500 via-purple-500 to-fuchsia-500'
   }
 ]
 
@@ -96,8 +96,8 @@ export function Services() {
       
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-blue-500/5 to-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 bg-gradient-to-br from-green-500/5 via-blue-500/5 to-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 bg-gradient-to-tr from-purple-500/5 via-pink-500/5 to-rose-500/5 rounded-full blur-3xl" />
       </div>
       
       <div className="container px-4 sm:px-6 lg:px-8 relative">
@@ -109,8 +109,8 @@ export function Services() {
             transition={{ duration: 0.5 }}
             className="inline-block"
           >
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-green-500/10 text-green-500 dark:bg-green-500/20 dark:text-green-400 text-sm font-medium mb-4">
-              <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" />
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-green-500/10 via-blue-500/10 to-purple-500/10 text-green-500 dark:text-green-400 text-sm font-medium backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 mr-2 animate-pulse" />
               Our Expertise
             </span>
           </motion.div>
@@ -123,7 +123,7 @@ export function Services() {
             className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
             Comprehensive Solutions for
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-blue-600">
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-green-500 via-blue-500 to-purple-500">
               Global Trade Excellence
             </span>
           </motion.h2>
@@ -165,7 +165,9 @@ export function Services() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="text-xl font-bold text-white mb-2 flex items-center">
-                    <service.icon className="w-6 h-6 mr-2" />
+                    <div className="w-8 h-8 rounded-lg bg-white/10 backdrop-blur-sm p-1.5 mr-3">
+                      <service.icon className="w-full h-full text-white" />
+                    </div>
                     {service.title}
                   </h3>
                   <p className="text-white/90 text-sm line-clamp-2">
@@ -185,7 +187,7 @@ export function Services() {
                   <ul className="grid grid-cols-2 gap-2">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2" />
+                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${service.color} mr-2`} />
                         {feature}
                       </li>
                     ))}
@@ -199,7 +201,7 @@ export function Services() {
                 >
                   <a
                     href={`/services#${service.title.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="inline-flex items-center px-4 py-2 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white text-sm font-medium group"
+                    className={`inline-flex items-center px-4 py-2 rounded-lg bg-gradient-to-r ${service.color} text-white text-sm font-medium group`}
                   >
                     Learn More
                     <svg

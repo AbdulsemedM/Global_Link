@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- World Map Background -->
+  <path d="M30 100 C30 60, 170 60, 170 100 C170 140, 30 140, 30 100" 
+        stroke="url(#map-gradient)" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M50 80 C50 60, 150 60, 150 80 C150 100, 50 100, 50 80" 
+        stroke="url(#map-gradient)" stroke-width="2" fill="none" opacity="0.3"/>
+  <path d="M50 120 C50 100, 150 100, 150 120 C150 140, 50 140, 50 120" 
+        stroke="url(#map-gradient)" stroke-width="2" fill="none" opacity="0.3"/>
+  
+  <!-- Connection Points -->
+  <circle cx="60" cy="90" r="4" fill="url(#point-gradient)"/>
+  <circle cx="140" cy="110" r="4" fill="url(#point-gradient)"/>
+  <circle cx="100" cy="80" r="4" fill="url(#point-gradient)"/>
+  <circle cx="80" cy="120" r="4" fill="url(#point-gradient)"/>
+  <circle cx="120" cy="100" r="4" fill="url(#point-gradient)"/>
+  
+  <!-- Connection Lines -->
+  <path d="M60 90 Q100 70 140 110" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M80 120 Q100 90 120 100" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="4 4"/>
+  <path d="M100 80 Q110 100 140 110" stroke="url(#line-gradient)" stroke-width="2" stroke-dasharray="4 4"/>
+  
+  <!-- Import/Export Arrows -->
+  <path d="M40 160 L60 160 L50 150 Z" fill="url(#arrow-gradient)"/>
+  <path d="M160 160 L140 160 L150 150 Z" fill="url(#arrow-gradient)"/>
+  <path d="M50 170 L150 170" stroke="url(#arrow-gradient)" stroke-width="2"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="map-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="point-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Animation -->
+  <style>
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 16;
+      }
+    }
+    path[stroke-dasharray] {
+      animation: dash 1s linear infinite;
+    }
+  </style>
+</svg> 

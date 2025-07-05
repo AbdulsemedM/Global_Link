@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Building Under Construction -->
+  <path d="M60 160V100H140V160" stroke="url(#building-gradient)" stroke-width="2" fill="none"/>
+  <path d="M80 160V120H120V160" stroke="url(#building-gradient)" stroke-width="2" fill="none"/>
+  <path d="M60 120H140" stroke="url(#building-gradient)" stroke-width="2" fill="none"/>
+  <path d="M60 140H140" stroke="url(#building-gradient)" stroke-width="2" fill="none"/>
+  
+  <!-- Construction Crane -->
+  <g transform="translate(100, 60)">
+    <!-- Base -->
+    <path d="M-5 100V0" stroke="url(#crane-gradient)" stroke-width="4"/>
+    <!-- Arm -->
+    <path d="M-40 0H40" stroke="url(#crane-gradient)" stroke-width="4"/>
+    <!-- Support -->
+    <path d="M-5 0L-30 30" stroke="url(#crane-gradient)" stroke-width="2"/>
+    <path d="M-5 0L-20 40" stroke="url(#crane-gradient)" stroke-width="2"/>
+    <!-- Cable -->
+    <path d="M30 0V40" stroke="url(#cable-gradient)" stroke-width="1" stroke-dasharray="4 4"/>
+    <!-- Hook -->
+    <path d="M28 40H32M30 40V45" stroke="url(#hook-gradient)" stroke-width="2"/>
+  </g>
+  
+  <!-- Construction Elements -->
+  <rect x="70" y="80" width="20" height="10" fill="url(#element-gradient)" stroke="url(#element-stroke)" stroke-width="1"/>
+  <rect x="110" y="90" width="20" height="10" fill="url(#element-gradient)" stroke="url(#element-stroke)" stroke-width="1"/>
+  
+  <!-- Ground -->
+  <path d="M40 160H160" stroke="url(#ground-gradient)" stroke-width="4"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="building-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="crane-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="cable-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="hook-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="element-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.2"/>
+    </linearGradient>
+    
+    <linearGradient id="element-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="ground-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Animation -->
+  <style>
+    @keyframes cable {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+      100% { transform: translateY(0); }
+    }
+    path[stroke-dasharray] {
+      animation: cable 2s ease-in-out infinite;
+    }
+  </style>
+</svg> 

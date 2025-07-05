@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Oil Barrel -->
+  <g transform="translate(100, 120)">
+    <!-- Main Barrel -->
+    <path d="M-30 -40H30V40H-30V-40Z" stroke="url(#barrel-gradient)" stroke-width="2" fill="url(#barrel-fill)"/>
+    <!-- Barrel Rings -->
+    <path d="M-30 -30H30" stroke="url(#ring-gradient)" stroke-width="2"/>
+    <path d="M-30 0H30" stroke="url(#ring-gradient)" stroke-width="2"/>
+    <path d="M-30 30H30" stroke="url(#ring-gradient)" stroke-width="2"/>
+    <!-- Barrel Top -->
+    <path d="M-30 -40C-30 -45 30 -45 30 -40" stroke="url(#barrel-gradient)" stroke-width="2"/>
+  </g>
+  
+  <!-- Pipeline -->
+  <path d="M40 80C40 60 70 60 70 80V100H130V80C130 60 160 60 160 80" 
+        stroke="url(#pipe-gradient)" 
+        stroke-width="4" 
+        fill="none"/>
+  
+  <!-- Oil Drops -->
+  <g transform="translate(100, 60)">
+    <path d="M0 0L5 10L0 20L-5 10Z" fill="url(#drop-gradient)">
+      <animateTransform
+        attributeName="transform"
+        type="translate"
+        values="0,0; 0,20; 0,0"
+        dur="2s"
+        repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Flow Indicators -->
+  <path d="M80 100H120" 
+        stroke="url(#flow-gradient)" 
+        stroke-width="2"
+        stroke-dasharray="4 4"/>
+  
+  <!-- Valve -->
+  <g transform="translate(100, 100)">
+    <circle cx="0" cy="0" r="6" fill="url(#valve-gradient)"/>
+    <path d="M-6 0H6" stroke="url(#valve-stroke)" stroke-width="2"/>
+    <path d="M0 -6V6" stroke="url(#valve-stroke)" stroke-width="2"/>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="barrel-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="barrel-fill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.1"/>
+    </linearGradient>
+    
+    <linearGradient id="ring-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="pipe-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="drop-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    
+    <linearGradient id="flow-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="valve-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22C55E"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="valve-stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Animation -->
+  <style>
+    @keyframes flow {
+      to {
+        stroke-dashoffset: 16;
+      }
+    }
+    path[stroke-dasharray] {
+      animation: flow 1s linear infinite;
+    }
+  </style>
+</svg> 

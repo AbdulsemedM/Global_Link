@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Client Group -->
+  <g transform="translate(40, 40)">
+    <!-- Central Client -->
+    <circle cx="0" cy="0" r="15" fill="url(#central-gradient)"/>
+    <path d="M-5 0C-5 0 -2.5 5 0 5C2.5 5 5 0 5 0" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="-5" cy="-5" r="2" fill="white"/>
+    <circle cx="5" cy="-5" r="2" fill="white"/>
+    
+    <!-- Orbiting Clients -->
+    <g>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 0 0"
+        to="360 0 0"
+        dur="10s"
+        repeatCount="indefinite"
+      />
+      
+      <!-- Client 1 -->
+      <g transform="translate(0, -25)">
+        <circle cx="0" cy="0" r="8" fill="url(#client1-gradient)"/>
+        <path d="M-3 0C-3 0 -1.5 3 0 3C1.5 3 3 0 3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="-3" cy="-3" r="1.5" fill="white"/>
+        <circle cx="3" cy="-3" r="1.5" fill="white"/>
+      </g>
+      
+      <!-- Client 2 -->
+      <g transform="translate(21.65, 12.5)">
+        <circle cx="0" cy="0" r="8" fill="url(#client2-gradient)"/>
+        <path d="M-3 0C-3 0 -1.5 3 0 3C1.5 3 3 0 3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="-3" cy="-3" r="1.5" fill="white"/>
+        <circle cx="3" cy="-3" r="1.5" fill="white"/>
+      </g>
+      
+      <!-- Client 3 -->
+      <g transform="translate(-21.65, 12.5)">
+        <circle cx="0" cy="0" r="8" fill="url(#client3-gradient)"/>
+        <path d="M-3 0C-3 0 -1.5 3 0 3C1.5 3 3 0 3 0" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="-3" cy="-3" r="1.5" fill="white"/>
+        <circle cx="3" cy="-3" r="1.5" fill="white"/>
+      </g>
+    </g>
+    
+    <!-- Connection Lines -->
+    <circle cx="0" cy="0" r="25" stroke="url(#connection-gradient)" stroke-width="2" stroke-dasharray="4 4">
+      <animate attributeName="stroke-dashoffset" from="0" to="16" dur="2s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="central-gradient" x1="-15" y1="-15" x2="15" y2="15">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <linearGradient id="client1-gradient" x1="-8" y1="-8" x2="8" y2="8">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="client2-gradient" x1="-8" y1="-8" x2="8" y2="8">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <linearGradient id="client3-gradient" x1="-8" y1="-8" x2="8" y2="8">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    
+    <linearGradient id="connection-gradient" x1="-25" y1="-25" x2="25" y2="25">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+</svg> 
