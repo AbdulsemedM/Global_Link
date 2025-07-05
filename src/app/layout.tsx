@@ -1,66 +1,40 @@
-import type { Metadata } from 'next'
+"use client"
+
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
-import { ThemeFavicon } from '@/components/theme-favicon'
+import { Navbar } from '@/components/navigation/navbar'
+import { Footer } from '@/components/navigation/footer'
+import { ScrollProgress, ScrollToTop } from '@/components/effects/scroll-progress'
+import { motion, AnimatePresence, Variants } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://anglertrading.com'),
-  title: {
-    default: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    template: '%s | Angler Trading PLC'
+const pageTransition: Variants = {
+  initial: {
+    opacity: 0,
+    y: 20
   },
-  description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-  keywords: ['import', 'export', 'wholesale', 'trade', 'ethiopia', 'ethiopian', 'import services', 'export services', 'wholesale trade', 'construction materials', 'hardware', 'metals', 'plumbing', 'vehicles', 'petroleum', 'coffee', 'tea'],
-  authors: [{ name: 'Angler Trading PLC' }],
-  creator: 'Angler Trading PLC',
-  publisher: 'Angler Trading PLC',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: [0.6, -0.05, 0.01, 0.99]
+    }
   },
-  openGraph: {
-    title: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-    url: 'https://anglertrading.com',
-    siteName: 'Angler Trading PLC',
-    locale: 'en_US',
-    type: 'website',
-    images: [
-      {
-        url: '/images/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Angler Trading PLC',
-      }
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-    images: ['/images/twitter-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  exit: {
+    opacity: 0,
+    y: -20,
+    transition: {
+      duration: 0.2,
+      ease: [0.6, -0.05, 0.01, 0.99]
+    }
+  }
 }
 
 export default function RootLayout({
@@ -68,6 +42,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname()
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -129,8 +105,25 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ThemeFavicon />
-          {children}
+          <ScrollProgress color="#3B82F6" height={3} />
+          <ScrollToTop color="#3B82F6" />
+          
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            <AnimatePresence mode="wait">
+              <motion.main
+                key={pathname}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                variants={pageTransition}
+                className="flex-grow"
+              >
+                {children}
+              </motion.main>
+            </AnimatePresence>
+            <Footer />
+          </div>
         </ThemeProvider>
       </body>
     </html>
