@@ -7,6 +7,7 @@ import { BeakerIcon, HomeIcon, CubeIcon, TruckIcon, GlobeAltIcon, BuildingStoref
 
 const services = [
   {
+    id: 'medical',
     icon: BeakerIcon,
     title: "Medical Supplies",
     description: "Import and distribution of human medicines, medical supplies, and equipment, ensuring healthcare facilities have access to quality products.",
@@ -19,6 +20,7 @@ const services = [
     color: "from-green-400 to-green-500"
   },
   {
+    id: 'construction',
     icon: HomeIcon,
     title: "Construction Materials",
     description: "Comprehensive supply of construction materials, hardware, metals, and plumbing equipment for both retail and wholesale customers.",
@@ -31,6 +33,7 @@ const services = [
     color: "from-green-500 to-green-600"
   },
   {
+    id: 'petroleum',
     icon: CubeIcon,
     title: "Petroleum Products",
     description: "Import and distribution of petroleum products, natural gas, and related materials to meet industrial and commercial needs.",
@@ -43,6 +46,7 @@ const services = [
     color: "from-green-600 to-green-700"
   },
   {
+    id: 'import',
     icon: TruckIcon,
     title: "Vehicle Import",
     description: "Professional importation services for vehicles, ensuring smooth customs clearance and documentation processes.",
@@ -55,6 +59,7 @@ const services = [
     color: "from-green-500 to-secondary"
   },
   {
+    id: 'export',
     icon: GlobeAltIcon,
     title: "Coffee & Tea Export",
     description: "Export of premium Ethiopian coffee and tea to international markets, showcasing the finest products from local producers.",
@@ -67,6 +72,7 @@ const services = [
     color: "from-secondary to-green-600"
   },
   {
+    id: 'wholesale',
     icon: BuildingStorefrontIcon,
     title: "Wholesale Trade",
     description: "Large-scale distribution of agricultural products, construction materials, and grain products to businesses nationwide.",
@@ -107,6 +113,59 @@ export default function Services() {
 
   return (
     <main className="min-h-screen w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": services.map((service, index) => ({
+              "@type": "Service",
+              "position": index + 1,
+              "name": service.title,
+              "description": service.description,
+              "provider": {
+                "@type": "Organization",
+                "name": "Angler Trading PLC",
+                "url": "https://anglertrading.com"
+              },
+              "areaServed": {
+                "@type": "Country",
+                "name": "Ethiopia"
+              },
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": service.title + " Catalog",
+                "itemListElement": service.features.map((feature, featureIndex) => ({
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": feature
+                  }
+                }))
+              }
+            }))
+          })
+        }}
+      />
+      {/* Quick Navigation */}
+      <nav className="sticky top-20 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+        <div className="container py-4">
+          <ul className="flex flex-wrap justify-center gap-4">
+            {services.map((service) => (
+              <li key={service.id}>
+                <a
+                  href={`#${service.id}`}
+                  className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-green-500 dark:hover:text-green-400 transition-colors"
+                >
+                  {service.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <ParticleNetwork isDark={isDark} />
@@ -130,48 +189,52 @@ export default function Services() {
       {/* Services Grid */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              id={service.id}
+              className={`mb-20 ${index !== services.length - 1 ? 'border-b border-gray-200 dark:border-gray-700 pb-20' : ''}`}
+            >
               <motion.div
-                key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
+                transition={{ duration: 0.5 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
               >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg h-full hover:shadow-xl transition-shadow duration-300 relative overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500/10 to-secondary/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 dark:group-hover:bg-green-500/30 transition-colors">
-                      <service.icon className="w-6 h-6 text-green-500 group-hover:text-secondary transition-colors" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">
-                      {service.description}
-                    </p>
-                    <ul className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <motion.li
-                          key={featureIndex}
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.3, delay: 0.5 + featureIndex * 0.1 }}
-                          className="flex items-center text-gray-600 dark:text-gray-300"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-green-500 to-secondary mr-3" />
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                    {service.title}
+                  </h2>
+                  <p className="text-lg text-gray-600 dark:text-gray-300">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-4">
+                    {service.features.map((feature) => (
+                      <li key={feature} className="flex items-center space-x-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                        <span className="text-gray-600 dark:text-gray-300">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="/contact"
+                    className="inline-block px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300"
+                  >
+                    Inquire Now
+                  </motion.a>
+                </div>
+                <div className="relative">
+                  <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-10 rounded-2xl`} />
+                  <div className="relative aspect-square rounded-2xl bg-white dark:bg-gray-800 p-8 shadow-xl">
+                    <service.icon className="w-full h-full text-green-500" />
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 

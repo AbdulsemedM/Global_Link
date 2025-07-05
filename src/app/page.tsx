@@ -20,7 +20,7 @@ const features = [
     color: "from-green-500 to-green-600",
     delay: 0.2
   },
-  {
+  { 
     title: "Export Expertise",
     description: "Specialized in coffee and tea export, connecting Ethiopian products with global markets.",
     icon: TruckIcon,
@@ -92,12 +92,12 @@ export default function Home() {
   const isDark = theme === 'dark'
 
   return (
-    <main className="min-h-screen w-full overflow-x-hidden">
+    <main className="min-h-screen w-full overflow-x-hidden" role="main" aria-label="Homepage">
       <Navbar />
       <Hero />
       
       {/* Features Section */}
-      <section className="w-full py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+      <section className="w-full py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden" aria-labelledby="features-heading">
         <ParticleNetwork isDark={isDark} />
         <div className="container relative z-10">
           <motion.div
@@ -107,7 +107,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 id="features-heading" className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Why Choose <span className="text-green-500">Angler Trading</span>?
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
@@ -115,7 +115,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
             {features.map((feature) => (
               <motion.div
                 key={feature.title}
@@ -125,13 +125,15 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: feature.delay }}
                 className="relative group cursor-pointer"
                 whileHover={{ scale: 1.02 }}
+                role="listitem"
+                aria-labelledby={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`}>
+                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`} aria-hidden="true">
                     <feature.icon className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  <h3 id={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`} className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
                     {feature.title}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -256,8 +258,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Contact />
-      <Footer />
+      <Contact />     <Footer />
     </main>
   )
 } 

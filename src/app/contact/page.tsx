@@ -38,6 +38,35 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen w-full">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Angler Trading PLC",
+              "url": "https://anglertrading.com",
+              "contactPoint": contactInfo.map(info => ({
+                "@type": "ContactPoint",
+                "contactType": info.title.toLowerCase(),
+                "telephone": info.title === "Phone" ? info.details[0] : undefined,
+                "email": info.title === "Email" ? info.details[0] : undefined,
+                "areaServed": "Worldwide",
+                "availableLanguage": ["English", "Amharic"],
+                "hoursAvailable": info.title === "Office Hours" ? info.details.join(", ") : undefined
+              })),
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Bole Road",
+                "addressLocality": "Addis Ababa",
+                "addressCountry": "Ethiopia"
+              }
+            }
+          })
+        }}
+      />
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <ParticleNetwork isDark={isDark} />
@@ -61,37 +90,91 @@ export default function Contact() {
       {/* Contact Information */}
       <section className="py-20 bg-gray-50 dark:bg-gray-900">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {contactInfo.map((info, index) => (
-              <motion.div
-                key={info.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group"
-              >
-                <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg h-full relative overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${info.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500/10 to-secondary/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 dark:group-hover:bg-green-500/30 transition-colors">
-                      <info.icon className="w-6 h-6 text-green-500 group-hover:text-secondary transition-colors" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {contactInfo.map((info) => (
+                  <motion.div
+                    key={info.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg"
+                  >
+                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${info.color} flex items-center justify-center mb-4`}>
+                      <info.icon className="h-6 w-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       {info.title}
                     </h3>
-                    {info.details.map((detail, detailIndex) => (
-                      <p
-                        key={detailIndex}
-                        className="text-gray-600 dark:text-gray-300"
-                      >
+                    {info.details.map((detail, index) => (
+                      <p key={index} className="text-gray-600 dark:text-gray-300">
                         {detail}
                       </p>
                     ))}
-                  </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Business Hours */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Business Hours
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Monday - Friday: 9:00 AM - 6:00 PM
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Saturday: 9:00 AM - 1:00 PM
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Sunday: Closed
+                  </p>
                 </div>
-              </motion.div>
-            ))}
+              </div>
+
+              {/* Additional Information */}
+              <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  Additional Information
+                </h3>
+                <div className="space-y-4">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Languages Spoken:</strong> English, Amharic
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Service Area:</strong> Ethiopia and International Markets
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <strong>Business Registration:</strong> Licensed Import/Export Company
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Map */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative h-[600px] bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5384387846007!2d38.7556!3d9.0106!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOcKwMDAnMzguMiJOIDM4wrA0NSczMy42IkU!5e0!3m2!1sen!2sus!4v1616000000000!5m2!1sen!2sus"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Angler Trading PLC Location"
+                className="grayscale"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
@@ -168,11 +251,6 @@ export default function Contact() {
             </motion.form>
           </div>
         </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="h-96 w-full bg-gray-200 dark:bg-gray-800">
-        {/* Add your map component here */}
       </section>
     </main>
   )
