@@ -64,10 +64,14 @@ const services = [
 ]
 
 const containerVariants = {
-  hidden: {},
+  hidden: { opacity: 0 },
   visible: {
+    opacity: 1,
     transition: {
       staggerChildren: 0.1,
+      delayChildren: 0.2,
+      duration: 0.3,
+      when: "beforeChildren"
     },
   },
 }
@@ -75,13 +79,14 @@ const containerVariants = {
 const cardVariants = {
   hidden: {
     opacity: 0,
-    y: 20,
+    y: 30,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
 }
@@ -104,8 +109,7 @@ export function Services() {
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="inline-block"
           >
@@ -117,9 +121,8 @@ export function Services() {
           
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4"
           >
             Comprehensive Solutions for
@@ -129,9 +132,8 @@ export function Services() {
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300"
           >
             We provide end-to-end trading solutions that connect businesses with global opportunities,
@@ -142,11 +144,10 @@ export function Services() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <motion.div
               key={service.title}
               variants={cardVariants}

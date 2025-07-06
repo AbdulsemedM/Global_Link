@@ -162,9 +162,14 @@ export default function AboutPage() {
             {/* Mission */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                type: "spring" as const,
+                stiffness: 100,
+                damping: 15,
+                duration: 0.8,
+                delay: 0.3 
+              }}
               className="relative group h-full"
             >
               <div className="absolute -inset-4 bg-gradient-to-r from-[#AEEA00]/20 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500" />
@@ -196,9 +201,14 @@ export default function AboutPage() {
             {/* Vision */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ 
+                type: "spring" as const,
+                stiffness: 100,
+                damping: 15,
+                duration: 0.8,
+                delay: 0.5 
+              }}
               className="relative group h-full"
             >
               <div className="absolute -inset-4 bg-gradient-to-l from-[#AEEA00]/20 to-transparent rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500" />
