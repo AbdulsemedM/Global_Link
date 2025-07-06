@@ -63,7 +63,7 @@ export function Navbar() {
         : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -71,33 +71,25 @@ export function Navbar() {
             transition={{ duration: 0.5 }}
             className="flex-shrink-0"
           >
-            <Link href="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 ${
-                  isDark
-                    ? "shadow-[#AEEA00]/25 group-hover:shadow-[#AEEA00]/50"
-                    : "shadow-[#AEEA00]/25 group-hover:shadow-[#AEEA00]/50"
-                }`}>
-                  <Image
-                    src="/images/icon.png"
-                    alt="Angler Trading Logo"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
-                    priority
-                  />
-                </div>
-                <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full animate-pulse shadow-lg ${
-                  isDark ? "bg-[#AEEA00] shadow-[#AEEA00]/50" : "bg-[#95C700] shadow-[#95C700]/50"
-                }`}></div>
+            <Link href="/" className="flex items-center space-x-4 group">
+              <div className="flex items-center">
+                <Image
+                  src="/images/icon.png"
+                  alt="Angler Trading Logo"
+                  width={80}
+                  height={80}
+                  className="transition-transform duration-300 group-hover:scale-110"
+                  style={{ objectFit: 'contain', background: 'transparent' }}
+                  priority
+                />
               </div>
               <div>
-                <span className={`text-lg font-bold transition-colors ${
+                <span className={`text-2xl font-bold transition-colors ${
                   isDark ? "text-white group-hover:text-[#AEEA00]" : "text-gray-800 group-hover:text-[#95C700]"
                 }`}>
                   Angler Trading
                 </span>
-                <div className={`text-xs ${isDark ? "text-[#AEEA00]" : "text-[#95C700]"}`}>
+                <div className={`text-base ${isDark ? "text-[#AEEA00]" : "text-[#95C700]"}`}>
                   Import • Export • Wholesale
                 </div>
               </div>
