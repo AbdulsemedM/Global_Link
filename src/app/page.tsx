@@ -1,7 +1,6 @@
 "use client"
 
 import { motion } from 'framer-motion'
-import { Navbar } from '@/components/navigation/navbar'
 import { Hero } from '@/components/sections/hero'
 import { Services } from '@/components/sections/services'
 import { Stats } from '@/components/sections/stats'
@@ -111,7 +110,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full overflow-x-hidden" role="main" aria-label="Homepage">
-      <Navbar />
       <Hero />
       
       {/* Features Section */}

@@ -1,15 +1,36 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { TrendingUp, ArrowRight } from "lucide-react"
-import { Button } from "../ui/button"
+import { Globe, TrendingUp, ArrowRight, Sun, Moon } from "lucide-react"
+import { Button } from "../../components/ui/button"
 
 export function Hero() {
   const [animationPhase, setAnimationPhase] = useState(0)
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Only set mounted to true after hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Set initial theme to dark
+  useEffect(() => {
+    if (!localStorage.getItem('theme')) {
+      setTheme('dark')
+    }
+  }, [setTheme])
+
+  // Handle theme toggle
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  // Prevent hydration mismatch by using mounted check
+  const isDark = mounted ? theme === 'dark' : true
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,6 +41,18 @@ export function Hero() {
 
   return (
     <div className={`min-h-screen relative overflow-hidden ${isDark ? 'bg-gradient-to-br from-black via-gray-900 to-black' : 'bg-gradient-to-br from-white via-gray-50 to-gray-100'}`}>
+      {/* Theme Toggle Button */}
+      <button
+        onClick={toggleTheme}
+        className={`fixed top-4 right-4 z-50 p-3 rounded-full transition-all duration-300 transform hover:scale-110 shadow-lg ${
+          isDark
+            ? "bg-lime-400/20 hover:bg-lime-400/30 text-lime-400 shadow-lime-400/25"
+            : "bg-lime-100 hover:bg-lime-200 text-lime-700 shadow-lime-200/50"
+        }`}
+      >
+        {isDark ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+      </button>
+
       {/* Enhanced Animated Background Carousel */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Background Image Carousel */}
@@ -39,7 +72,7 @@ export function Hero() {
               <div className="absolute inset-0">
                 <div className={`absolute top-1/4 right-1/4 w-8 h-12 bg-gradient-to-b from-orange-600 to-orange-800 rounded animate-float ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
                 <div className={`absolute top-1/3 right-1/3 w-6 h-10 bg-gradient-to-b from-orange-500 to-orange-700 rounded animate-float-delayed ${isDark ? 'opacity-60' : 'opacity-40'}`}></div>
-                <div className={`absolute top-1/5 left-1/4 text-sm font-bold animate-pulse ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>$78.50</div>
+                <div className={`absolute top-1/5 left-1/4 text-sm font-bold animate-pulse ${isDark ? 'text-lime-400' : 'text-lime-600'}`}></div>
                 <div className={`absolute top-1/3 left-1/3 text-sm font-bold animate-pulse delay-500 ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>+2.3%</div>
               </div>
             </div>
@@ -316,4 +349,4 @@ export function Hero() {
       `}</style>
     </div>
   )
-} 
+}
