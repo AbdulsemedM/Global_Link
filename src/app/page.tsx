@@ -5,7 +5,6 @@ import { Hero } from '@/components/sections/hero'
 import { Services } from '@/components/sections/services'
 import { Stats } from '@/components/sections/stats'
 import { Contact } from '@/components/sections/contact'
-import { Footer } from '@/components/navigation/footer'
 import { BeakerIcon, HomeIcon, CubeIcon, TruckIcon, GlobeAltIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline'
 import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
@@ -371,7 +370,7 @@ export default function Home() {
         </div>
       </section>
 
-      <Contact />     <Footer />
+      <Contact />
     </main>
   )
 } 

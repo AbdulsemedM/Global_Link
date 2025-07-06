@@ -237,7 +237,7 @@ export function Hero() {
                 </span>{" "}
                 and expertise.
               </p>
-            </div>
+          </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
@@ -273,7 +273,7 @@ export function Hero() {
                   150+
                 </div>
                 <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Countries</div>
-              </div>
+                  </div>
               <div className="text-center group">
                 <div className={`text-3xl font-bold group-hover:scale-110 transition-transform duration-300 ${
                   isDark ? 'text-lime-400' : 'text-lime-600'
@@ -347,4 +347,4 @@ export function Hero() {
       `}</style>
     </div>
   )
-}
+} 

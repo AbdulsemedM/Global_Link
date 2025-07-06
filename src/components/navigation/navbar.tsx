@@ -12,13 +12,13 @@ const navigation = [
   { 
     name: 'Services', 
     href: '/services',
-    submenu: [
+    /*submenu: [
       { name: 'Import/Export', href: '/services#import-export' },
       { name: 'Wholesale', href: '/services#wholesale' },
       { name: 'Construction', href: '/services#construction' },
       { name: 'Medical', href: '/services#medical' },
       { name: 'Petroleum', href: '/services#petroleum' },
-    ]
+    ]*/ 
   },
   { 
     name: 'Industries', 
