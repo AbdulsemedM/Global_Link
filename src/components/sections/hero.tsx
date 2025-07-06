@@ -134,8 +134,6 @@ export function Hero() {
               <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-r from-black/95 via-black/70 to-black/50' : 'bg-gradient-to-r from-white/90 via-white/70 to-white/50'}`}></div>
               {/* Animated Energy Elements */}
               <div className="absolute inset-0">
-                <div className={`absolute bottom-1/3 right-1/4 text-xs font-bold animate-pulse ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>CRUDE +1.2%</div>
-                <div className={`absolute bottom-1/4 right-1/3 text-xs font-bold animate-pulse delay-700 ${isDark ? 'text-lime-400' : 'text-lime-600'}`}>BRENT $82.15</div>
               </div>
             </div>
           </div>
