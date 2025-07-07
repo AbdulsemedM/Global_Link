@@ -1,42 +1,42 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://anglertrading.com'),
+  metadataBase: new URL('https://globallink.com'),
   title: {
-    default: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    template: '%s | Angler Trading PLC'
+    default: 'Global Link - International Trade & Business Solutions',
+    template: '%s | Global Link'
   },
-  description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-  keywords: ['import', 'export', 'wholesale', 'trade', 'ethiopia', 'ethiopian', 'import services', 'export services', 'wholesale trade', 'construction materials', 'hardware', 'metals', 'plumbing', 'vehicles', 'petroleum', 'coffee', 'tea'],
-  authors: [{ name: 'Angler Trading PLC' }],
-  creator: 'Angler Trading PLC',
-  publisher: 'Angler Trading PLC',
+  description: 'Your trusted partner in international trade and business solutions. Specializing in import, export, wholesale trade, and global business connections.',
+  keywords: ['international trade', 'import', 'export', 'wholesale', 'business solutions', 'global trade', 'trade services', 'business connections', 'international business'],
+  authors: [{ name: 'Global Link' }],
+  creator: 'Global Link',
+  publisher: 'Global Link',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-    url: 'https://anglertrading.com',
-    siteName: 'Angler Trading PLC',
+    title: 'Global Link - International Trade & Business Solutions',
+    description: 'Your trusted partner in international trade and business solutions. Specializing in import, export, wholesale trade, and global business connections.',
+    url: 'https://globallink.com',
+    siteName: 'Global Link',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/images/logo.png',
         width: 1200,
         height: 630,
-        alt: 'Angler Trading PLC',
+        alt: 'Global Link',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Angler Trading PLC - Import, Export & Wholesale Trade',
-    description: 'Your trusted partner in import, export, and wholesale trade. Specializing in construction materials, medical supplies, vehicles, petroleum products, coffee and tea export.',
-    images: ['/images/twitter-image.jpg'],
+    title: 'Global Link - International Trade & Business Solutions',
+    description: 'Your trusted partner in international trade and business solutions. Specializing in import, export, wholesale trade, and global business connections.',
+    images: ['/images/logo.png'],
   },
   robots: {
     index: true,
