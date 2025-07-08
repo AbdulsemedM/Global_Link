@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Company Symbol -->
+  <g transform="translate(60, 40)">
+    <!-- Factory Building -->
+    <path d="M-30 20V-10L0 -20L30 -10V20H-30Z" fill="url(#building-gradient)" stroke="#1A1A1A" stroke-width="2"/>
+    
+    <!-- Chimney -->
+    <path d="M10 -15V-25" stroke="#1A1A1A" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Windows -->
+    <rect x="-20" y="-5" width="10" height="10" rx="2" fill="white"/>
+    <rect x="-5" y="-5" width="10" height="10" rx="2" fill="white"/>
+    <rect x="10" y="-5" width="10" height="10" rx="2" fill="white"/>
+    
+    <!-- Gear Symbol -->
+    <circle cx="15" cy="-15" r="8" fill="url(#gear-gradient)" stroke="#1A1A1A" stroke-width="2"/>
+    <path d="M15 -19V-11M11 -15H19" stroke="#1A1A1A" stroke-width="2"/>
+  </g>
+  
+  <!-- Company Name -->
+  <text x="140" y="35" text-anchor="start" font-family="Arial" font-weight="bold" font-size="16" fill="#1A1A1A">
+    ETHIO MANUFACTURING
+  </text>
+  <text x="140" y="55" text-anchor="start" font-family="Arial" font-size="12" fill="#666666">
+    EXCELLENCE IN PRODUCTION
+  </text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="building-gradient" x1="-30" y1="-20" x2="30" y2="20">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <linearGradient id="gear-gradient" x1="7" y1="-23" x2="23" y2="-7">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+</svg> 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Company Symbol -->
+  <g transform="translate(60, 40)">
+    <!-- Buildings -->
+    <path d="M-25 20V-5L-10 -15L5 -5V20H-25Z" fill="url(#building1-gradient)" stroke="#1A1A1A" stroke-width="2"/>
+    <path d="M0 20V-15L15 -25L30 -15V20H0Z" fill="url(#building2-gradient)" stroke="#1A1A1A" stroke-width="2"/>
+    
+    <!-- Windows -->
+    <rect x="-20" y="0" width="8" height="8" rx="1" fill="white"/>
+    <rect x="-20" y="-10" width="8" height="8" rx="1" fill="white"/>
+    <rect x="5" y="0" width="8" height="8" rx="1" fill="white"/>
+    <rect x="5" y="-10" width="8" height="8" rx="1" fill="white"/>
+    <rect x="17" y="0" width="8" height="8" rx="1" fill="white"/>
+    <rect x="17" y="-10" width="8" height="8" rx="1" fill="white"/>
+    
+    <!-- Crane -->
+    <path d="M15 -25L25 -35H35" stroke="#1A1A1A" stroke-width="2"/>
+    <path d="M25 -35V-25" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="25" cy="-30" r="2" fill="#1A1A1A"/>
+  </g>
+  
+  <!-- Company Name -->
+  <text x="140" y="35" text-anchor="start" font-family="Arial" font-weight="bold" font-size="16" fill="#1A1A1A">
+    ADDIS BUILDERS
+  </text>
+  <text x="140" y="55" text-anchor="start" font-family="Arial" font-size="12" fill="#666666">
+    BUILDING THE FUTURE
+  </text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="building1-gradient" x1="-25" y1="-15" x2="5" y2="20">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="building2-gradient" x1="0" y1="-25" x2="30" y2="20">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+</svg> 

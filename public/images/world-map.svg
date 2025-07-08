@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1440" height="900" viewBox="0 0 1440 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M100,200 Q150,180 200,190 T300,200 T400,210 T500,200 T600,190" stroke="currentColor" stroke-width="1" fill="none"/>
+  <path d="M200,300 Q250,280 300,290 T400,300 T500,310 T600,300 T700,290" stroke="currentColor" stroke-width="1" fill="none"/>
+  <path d="M300,400 Q350,380 400,390 T500,400 T600,410 T700,400 T800,390" stroke="currentColor" stroke-width="1" fill="none"/>
+  <path d="M400,500 Q450,480 500,490 T600,500 T700,510 T800,500 T900,490" stroke="currentColor" stroke-width="1" fill="none"/>
+  <path d="M500,600 Q550,580 600,590 T700,600 T800,610 T900,600 T1000,590" stroke="currentColor" stroke-width="1" fill="none"/>
+  
+  <!-- Continents (simplified shapes) -->
+  <path d="M200,150 C250,100 300,120 350,150 C400,180 450,160 500,140 C550,120 600,130 650,160 L650,250 C600,280 550,260 500,240 C450,220 400,240 350,260 C300,280 250,260 200,240 Z" fill="currentColor" opacity="0.1"/>
+  <path d="M700,300 C750,250 800,270 850,300 C900,330 950,310 1000,290 C1050,270 1100,280 1150,310 L1150,400 C1100,430 1050,410 1000,390 C950,370 900,390 850,410 C800,430 750,410 700,390 Z" fill="currentColor" opacity="0.1"/>
+  <path d="M300,450 C350,400 400,420 450,450 C500,480 550,460 600,440 C650,420 700,430 750,460 L750,550 C700,580 650,560 600,540 C550,520 500,540 450,560 C400,580 350,560 300,540 Z" fill="currentColor" opacity="0.1"/>
+</svg> 

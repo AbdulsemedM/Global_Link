@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Globe Base -->
+  <g transform="translate(40, 40)">
+    <circle cx="0" cy="0" r="30" fill="url(#globe-gradient)" stroke="#1A1A1A" stroke-width="2"/>
+    
+    <!-- Latitude Lines -->
+    <path d="M-30 0H30" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    <path d="M-25 -15H25" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    <path d="M-25 15H25" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    
+    <!-- Longitude Lines -->
+    <path d="M0 -30V30" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    <path d="M-15 -25V25" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    <path d="M15 -25V25" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 2"/>
+    
+    <!-- Connection Points -->
+    <circle cx="-20" cy="-10" r="3" fill="url(#point-gradient)">
+      <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="15" cy="20" r="3" fill="url(#point-gradient)">
+      <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <circle cx="20" cy="-15" r="3" fill="url(#point-gradient)">
+      <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+    
+    <!-- Connection Lines -->
+    <path d="M-20 -10L15 20" stroke="url(#connection-gradient)" stroke-width="2" stroke-dasharray="2 2">
+      <animate attributeName="stroke-dashoffset" from="0" to="8" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <path d="M15 20L20 -15" stroke="url(#connection-gradient)" stroke-width="2" stroke-dasharray="2 2">
+      <animate attributeName="stroke-dashoffset" from="0" to="8" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <path d="M20 -15L-20 -10" stroke="url(#connection-gradient)" stroke-width="2" stroke-dasharray="2 2">
+      <animate attributeName="stroke-dashoffset" from="0" to="8" dur="1s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="globe-gradient" x1="-30" y1="-30" x2="30" y2="30">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="50%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    
+    <linearGradient id="point-gradient" x1="-3" y1="-3" x2="3" y2="3">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    
+    <linearGradient id="connection-gradient" x1="-30" y1="-30" x2="30" y2="30">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+</svg> 
