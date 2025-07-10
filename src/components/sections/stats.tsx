@@ -8,7 +8,7 @@ import { ChartBarIcon, GlobeAltIcon, TruckIcon, CheckCircleIcon } from '@heroico
 
 const stats = [
   {
-    value: 150,
+    value: 8,
     suffix: '+',
     label: 'Countries Served',
     description: 'Global reach across continents, connecting businesses worldwide through our extensive network.',
@@ -26,9 +26,9 @@ const stats = [
     image: '/images/stats/happy-clients.jpg'
   },
   {
-    value: 500000,
+    value: 300,
     suffix: '+',
-    label: 'Shipments',
+    label: 'Partners',
     description: 'Successfully delivered shipments across the globe, ensuring timely and secure transportation.',
     gradient: 'from-green-500 to-emerald-500',
     icon: TruckIcon,

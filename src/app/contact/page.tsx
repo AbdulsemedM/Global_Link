@@ -43,7 +43,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-[#AEEA00]/10 text-[#AEEA00] px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Zap className="w-4 h-4" />
-            Let's Connect
+            Let&lsquo;s Connect
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-black dark:text-white mb-6">
             Get In{" "}
@@ -53,7 +53,7 @@ export default function ContactPage() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Ready to start something amazing together? We'd love to hear from you. Drop us a line and let's make magic
+              Ready to start something amazing together? We&lsquo;d love to hear from you. Drop us a line and let&lsquo;s make magic
             happen.
           </p>
         </div>
@@ -66,9 +66,9 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-black dark:text-white mb-6">Let's Start a Conversation</h2>
+                <h2 className="text-3xl font-bold text-black dark:text-white mb-6">Let&lsquo;s Start a Conversation</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                  Whether you have a question, want to start a project, or just want to say hello, we're here and ready
+                  Whether you have a question, want to start a project, or just want to say hello, we&lsquo;re here and ready
                   to chat. Choose your preferred way to reach out.
                 </p>
               </div>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                 <CardHeader className="pb-6">
                   <CardTitle className="text-2xl font-bold text-black dark:text-white">Send us a Message</CardTitle>
                   <CardDescription className="text-gray-600 dark:text-gray-300">
-                    Fill out the form below and we'll get back to you within 24 hours.
+                    Fill out the form below and we&lsquo;ll get back to you within 24 hours.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -267,7 +267,7 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-6">Ready to Get Started?</h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Don't wait any longer. Reach out today and let's discuss how we can help bring your vision to life.
+            Don&lsquo;t wait any longer. Reach out today and let&lsquo;s discuss how we can help bring your vision to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button

@@ -1,14 +1,15 @@
 "use client"
 
-import { motion } from 'framer-motion'
+import { motion, useAnimationControls } from 'framer-motion'
 import { Hero } from '@/components/sections/hero'
 import { Services } from '@/components/sections/services'
 import { Stats } from '@/components/sections/stats'
 import { Contact } from '@/components/sections/contact'
-import { BeakerIcon, HomeIcon, CubeIcon, TruckIcon, GlobeAltIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline'
+import { TruckIcon, GlobeAltIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline'
 import { ParticleNetwork } from '@/components/effects/particle-network'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
+import React from 'react'
 
 const features = [
   {
@@ -40,8 +41,8 @@ const testimonials = [
     author: "Dr. Sarah Ahmed",
     role: "Medical Director",
     company: "Central Hospital",
-    image: "/images/testimonials/sarah-ahmed.jpg",
-    logo: "/images/testimonials/central-hospital-logo.png",
+    image: "/images/testimonials/Dr. sarah.jpeg",
+    logo: "/images/testimonials/central hospital.png",
     rating: 5
   },
   {
@@ -49,8 +50,8 @@ const testimonials = [
     author: "Michael Tesfaye",
     role: "Project Manager",
     company: "BuildRight Construction",
-    image: "/images/testimonials/michael-tesfaye.jpg",
-    logo: "/images/testimonials/buildright-logo.png",
+    image: "/images/testimonials/michael tesfaye.jpg",
+    logo: "/images/testimonials/build right.png",
     rating: 5
   },
   {
@@ -58,8 +59,8 @@ const testimonials = [
     author: "Emma Bekele",
     role: "Procurement Manager",
     company: "AgriGrow Ltd",
-    image: "/images/testimonials/emma-bekele.jpg",
-    logo: "/images/testimonials/agrigrow-logo.png",
+    image: "/images/testimonials/emma bekele.jpg",
+    logo: "/images/testimonials/agri grow.jpeg",
     rating: 5
   },
   {
@@ -67,20 +68,13 @@ const testimonials = [
     author: "Daniel Haile",
     role: "Export Director",
     company: "Ethiopian Coffee Cooperative",
-    image: "/images/testimonials/daniel-haile.jpg",
-    logo: "/images/testimonials/ecc-logo.png",
+    image: "/images/testimonials/daniel haile.jpeg",
+    logo: "/images/testimonials/coffee.png",
     rating: 5
   }
 ]
 
-const services = [
-  { icon: BeakerIcon, name: "Medical Supplies", color: "from-green-400 to-green-500" },
-  { icon: HomeIcon, name: "Construction Materials", color: "from-green-500 to-green-600" },
-  { icon: CubeIcon, name: "Petroleum Products", color: "from-green-600 to-green-700" },
-  { icon: TruckIcon, name: "Vehicle Import", color: "from-green-500 to-secondary" },
-  { icon: GlobeAltIcon, name: "Coffee & Tea Export", color: "from-secondary to-green-600" },
-  { icon: BuildingStorefrontIcon, name: "Wholesale Trade", color: "from-secondary to-secondary/80" }
-]
+
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -106,6 +100,23 @@ const itemVariants = {
 export default function Home() {
   const { theme } = useTheme()
   const isDark = theme === 'dark'
+  const controls = useAnimationControls()
+
+  const startAnimation = React.useCallback(() => {
+    controls.start({
+      x: -1920,
+      transition: {
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "loop",
+        ease: "linear"
+      }
+    })
+  }, [controls])
+
+  React.useEffect(() => {
+    startAnimation()
+  }, [startAnimation])
 
   return (
     <main className="min-h-screen w-full overflow-x-hidden" role="main" aria-label="Homepage">
@@ -302,70 +313,52 @@ export default function Home() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-              {[1, 2, 3, 4].map((index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative h-12 w-32"
-                >
-                  <Image
-                    src={`/images/partners/partner-${index}.png`}
-                    alt={`Partner ${index}`}
-                    fill
-                    className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services Overview */}
-      <section className="w-full py-24 bg-gray-50 dark:bg-gray-800">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Services Overview
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Comprehensive solutions for your business needs
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8"
-          >
-            {services.map((service) => (
-              <motion.div
-                key={service.name}
-                variants={itemVariants}
-                className="group relative"
-                whileHover={{ scale: 1.05 }}
+            <div className="relative w-full overflow-hidden">
+              <motion.div 
+                className="flex items-center gap-16"
+                initial={{ x: 0 }}
+                animate={controls}
+                onHoverStart={() => controls.stop()}
+                onHoverEnd={() => startAnimation()}
               >
-                <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                <div className="relative bg-white dark:bg-gray-700 rounded-xl shadow-md p-6 flex flex-col items-center justify-center aspect-square group-hover:shadow-lg transition-shadow duration-300">
-                  <service.icon className="w-8 h-8 text-green-500 mb-3 group-hover:text-secondary transition-colors" />
-                  <p className="text-sm font-medium text-gray-900 dark:text-white text-center">
-                    {service.name}
-                  </p>
-                </div>
+                {/* First set of logos */}
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <motion.div
+                    key={`first-${index}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative h-16 w-40 flex-shrink-0"
+                  >
+                    <Image
+                      src={`/images/partners/partner-${index}.png`}
+                      alt={`Partner ${index}`}
+                      fill
+                      className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </motion.div>
+                ))}
+                {/* Duplicate set of logos for seamless loop */}
+                {[1, 2, 3, 4, 5].map((index) => (
+                  <motion.div
+                    key={`second-${index}`}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="relative h-16 w-40 flex-shrink-0"
+                  >
+                    <Image
+                      src={`/images/partners/partner-${index}.png`}
+                      alt={`Partner ${index}`}
+                      fill
+                      className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    />
+                  </motion.div>
+                ))}
               </motion.div>
-            ))}
+            </div>
           </motion.div>
         </div>
       </section>

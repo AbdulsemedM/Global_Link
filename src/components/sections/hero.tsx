@@ -1,10 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
-import { Globe, TrendingUp, ArrowRight } from "lucide-react"
+import { TrendingUp, ArrowRight } from "lucide-react"
 import { Button } from "../../components/ui/button"
 
 export function Hero() {
