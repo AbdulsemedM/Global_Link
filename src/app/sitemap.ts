@@ -1,6 +1,9 @@
 import type { MetadataRoute } from 'next'
 import { sectors, site } from '@/lib/site'
 
+// Pre-rendered at build time for the static export
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date()
   const page = (path: string, priority: number, changeFrequency: 'weekly' | 'monthly') => ({

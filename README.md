@@ -71,7 +71,13 @@ To receive submissions server-side instead, add a route handler (e.g. `src/app/a
 - JSON-LD: Organization/LocalBusiness, WebSite, Service, BreadcrumbList, FAQPage, ItemList
 - Generated `sitemap.xml`, `robots.txt` and web manifest
 
-## Deployment
+## Deployment (DirectAdmin / Apache shared hosting)
 
-Works on any Next.js host (e.g. Vercel: `npm run build` + `next start`).
-For hosts that run a Node process directly (cPanel/Passenger), `server.js` is provided: `npm run build && npm start`.
+The site is a static export (`output: 'export'` in `next.config.ts`).
+
+1. `npm run build` writes the complete site to `out/`.
+2. Upload the **contents** of `out/` to `domains/anglertrading.com/public_html/` via DirectAdmin File Manager or FTP. Zip, upload, then extract in place.
+3. `public/.htaccess` is copied into the build. It forces HTTPS on the bare domain, serves clean URLs (`/about` → `about.html`), sets the 404 page, and enables caching and compression.
+4. Enable the free Let's Encrypt certificate under **SSL Certificates** in DirectAdmin.
+
+To update the site: rebuild and re-upload. Because the export has no image server, photos are served as the pre-compressed WebP files in `public/images/photos/`. `server.js` is only for Node hosting and is not used here.
