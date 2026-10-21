@@ -44,8 +44,8 @@ export default async function SectorPage({ params }: Params) {
   const facts = [
     ['Reference', `${sector.code}-${String(index + 1).padStart(2, '0')}`],
     ['Service', sector.kind],
-    ['Coverage', sector.kind === 'Export' ? 'Middle East, Europe & Asia' : 'Nationwide, Ethiopia'],
-    ['Route', sector.kind === 'Wholesale' ? 'Domestic distribution network' : 'Via the Djibouti corridor'],
+    [sector.kind === 'Export' ? 'Markets' : 'Delivery', sector.markets],
+    ['Route', sector.route],
     ['Response', 'Within one business day'],
   ]
 
@@ -68,7 +68,7 @@ export default async function SectorPage({ params }: Params) {
             url: absoluteUrl(`/services/${sector.id}`),
             image: absoluteUrl(sector.image),
             provider: organizationRef,
-            areaServed: sector.kind === 'Export' ? ['Middle East', 'Europe', 'Asia'] : { '@type': 'Country', name: 'Ethiopia' },
+            areaServed: sector.kind === 'Export' ? sector.markets.split(', ') : { '@type': 'Country', name: 'Ethiopia' },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
               name: `${sector.title} products`,
@@ -155,7 +155,7 @@ export default async function SectorPage({ params }: Params) {
 
       <section aria-labelledby="related-heading" className="pb-24 md:pb-32">
         <div className="container">
-          <div className="flex items-baseline justify-between border-t border-foreground pt-6">
+          <div className="flex items-baseline justify-between border-t border-border pt-6">
             <h2 id="related-heading" className="label text-foreground">
               Other sectors
             </h2>
@@ -167,7 +167,7 @@ export default async function SectorPage({ params }: Params) {
             {related.map((r) => (
               <li key={r.id}>
                 <Link href={`/services/${r.id}`} className="group block">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
                     <Image
                       src={r.image}
                       alt=""

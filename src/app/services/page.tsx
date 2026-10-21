@@ -11,11 +11,11 @@ import { faqs, sectors } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 export const metadata = pageMetadata({
-  title: 'Import, Export & Wholesale Services',
+  title: 'Produce Export & Agri-Import Services',
   description:
-    'Medical supplies, construction materials, petroleum, vehicle import, coffee & tea export and wholesale — sourced, cleared and delivered from Addis Ababa.',
+    'Ethiopian fresh vegetables, fruit and pulses exported to Djibouti, Somalia, Kenya and Pakistan; crop-protection products and trucks imported.',
   path: '/services',
-  keywords: ['import export services Ethiopia', 'trading company Ethiopia', 'customs clearance Ethiopia', 'wholesale Addis Ababa'],
+  keywords: ['fresh produce exporter Ethiopia', 'Ethiopian vegetables export', 'pulses exporter Ethiopia', 'export to Djibouti', 'trading company Addis Ababa'],
 })
 
 export default function ServicesPage() {
@@ -57,10 +57,10 @@ export default function ServicesPage() {
         label="Services"
         title={
           <>
-            Six sectors. <em>One standard of care.</em>
+            Five trade lines. <em>One standard of care.</em>
           </>
         }
-        intro="From hospital supplies to specialty coffee, each sector has its own specialists, supplier network and compliance know-how — and the same commitment to getting it right."
+        intro="Three export lines from Ethiopian farms and two import lines that support them — each with its own sourcing network and paperwork know-how, and the same commitment to getting it right."
         aside={
           <ul className="flex flex-wrap gap-x-6 gap-y-2 border-t border-border pt-5 font-mono text-[11px] uppercase tracking-[0.1em]">
             {sectors.map((s) => (
@@ -77,11 +77,11 @@ export default function ServicesPage() {
       <section aria-label="Sectors" className="pb-24 md:pb-32">
         <div className="container">
           {sectors.map((s, i) => (
-            <article key={s.id} id={s.id} className="scroll-mt-28 border-t border-foreground py-14 md:py-20">
+            <article key={s.id} id={s.id} className="scroll-mt-28 border-t border-border py-14 md:py-20">
               <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
                 <Reveal className={cn('lg:col-span-5', i % 2 === 1 && 'lg:order-last lg:col-start-8')}>
                   <Link href={`/services/${s.id}`} className="group block">
-                    <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
                       <Image
                         src={s.image}
                         alt={s.imageAlt}

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 /** Key figures in a hairline grid: two columns on mobile, four on desktop. */
 export function Figures({ className }: { className?: string }) {
   return (
-    <dl className={cn('grid grid-cols-2 border-t border-foreground lg:grid-cols-4', className)}>
+    <dl className={cn('grid grid-cols-2 border-t border-border lg:grid-cols-4', className)}>
       {stats.map((s, i) => (
         <div
           key={s.label}

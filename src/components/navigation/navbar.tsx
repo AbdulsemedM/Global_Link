@@ -167,7 +167,7 @@ export function Navbar() {
                 <div className="col-span-3">
                   <p className="label">Services</p>
                   <p className="mt-5 font-serif text-[28px] leading-tight tracking-[-0.01em]">
-                    Six sectors, handled end to end by one team.
+                    Five trade lines, handled end to end by one team.
                   </p>
                   <Link href="/services" className="group mt-6 inline-flex items-center gap-2 text-sm font-medium">
                     <span className="link-underline">All services</span> <ArrowRight className="h-4 w-4" />
@@ -190,7 +190,7 @@ export function Navbar() {
                   ))}
                 </ul>
                 <div className="col-span-4">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted">
                     <AnimatePresence initial={false}>
                       <motion.div
                         key={preview}

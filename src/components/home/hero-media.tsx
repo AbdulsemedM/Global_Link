@@ -11,7 +11,7 @@ export function HeroMedia({ src, alt }: { src: string; alt: string }) {
   const scale = useTransform(scrollYProgress, [0, 1], [1.12, 1])
 
   return (
-    <div ref={ref} className="relative aspect-[4/3] overflow-hidden bg-muted sm:aspect-[16/9] lg:aspect-[2.25/1]">
+    <div ref={ref} className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted sm:aspect-[16/9] lg:aspect-[2.25/1]">
       <motion.div style={{ scale }} className="absolute inset-0">
         <Image src={src} alt={alt} fill loading="eager" sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover" />
       </motion.div>

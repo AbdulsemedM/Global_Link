@@ -9,7 +9,7 @@ import { faqs, site } from '@/lib/site'
 
 export const metadata = pageMetadata({
   title: 'Contact Us — Request a Quote',
-  description: `Request an import, export or wholesale quote. Call ${site.phone} or email ${site.email} — we reply within one business day.`,
+  description: `Request a quote for fresh produce, pulses, agri-inputs or trucks. Call ${site.phone} or email ${site.email} — we reply within one business day.`,
   path: '/contact',
   keywords: ['contact Angler Trading', 'import quote Ethiopia', 'export inquiry Ethiopia', 'trading company Addis Ababa contact'],
 })
@@ -44,7 +44,7 @@ export default function ContactPage() {
       <section className="pb-24 md:pb-32">
         <div className="container grid gap-16 lg:grid-cols-12 lg:gap-10">
           <aside className="lg:col-span-4">
-            <dl className="border-t border-foreground">
+            <dl className="border-t border-border">
               <Detail label="Email">
                 <a href={`mailto:${site.email}`} className="link-underline">
                   {site.email}
@@ -92,7 +92,7 @@ export default function ContactPage() {
           </aside>
 
           <div className="lg:col-span-7 lg:col-start-6">
-            <h2 className="label border-t border-foreground pb-2 pt-6 text-foreground">Inquiry form</h2>
+            <h2 className="label border-t border-border pb-2 pt-6 text-foreground">Inquiry form</h2>
             <Suspense fallback={<div className="min-h-[640px]" />}>
               <ContactForm />
             </Suspense>

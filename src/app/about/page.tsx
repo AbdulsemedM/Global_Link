@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import { PageHeader } from '@/components/sections/page-header'
 import { SectionHead } from '@/components/sections/section-head'
-import { Partners } from '@/components/sections/partners'
 import { Figures } from '@/components/sections/figures'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Reveal } from '@/components/ui/reveal'
@@ -12,7 +11,7 @@ import { values } from '@/lib/site'
 export const metadata = pageMetadata({
   title: 'About Us — Ethiopian Trading Company',
   description:
-    'Meet Angler Trading PLC: an Addis Ababa import, export and wholesale company connecting Ethiopian businesses and producers with global markets.',
+    'Meet Angler Trading PLC: an Addis Ababa company exporting Ethiopian fresh produce and pulses across the Horn of Africa and importing agricultural inputs and trucks.',
   path: '/about',
   keywords: ['about Angler Trading', 'Ethiopian trading company', 'import export company Addis Ababa'],
 })
@@ -38,14 +37,14 @@ export default function AboutPage() {
         label="About"
         title={
           <>
-            A trading house, <em>built in Addis Ababa.</em>
+            From Ethiopian farms <em>to regional markets.</em>
           </>
         }
-        intro="We exist to make international trade simpler, safer and more reliable for the Ethiopian businesses that depend on it — and for the buyers abroad who depend on Ethiopia."
+        intro="We connect Ethiopian growers with buyers across the Horn of Africa and beyond — and bring in the inputs and vehicles that keep Ethiopian agriculture moving."
         image={{
           src: '/images/photos/tea-harvest.webp',
           alt: 'Tea pickers in a lush Ethiopian tea plantation',
-          caption: 'FIG. 01 — Tea harvest. Ethiopian producers are at the heart of our export business.',
+          caption: 'FIG. 01 — Harvest in the Ethiopian highlands. Growers are at the heart of our business.',
         }}
       />
 
@@ -57,20 +56,20 @@ export default function AboutPage() {
             label="Our story"
             title={
               <>
-                Ethiopia needs dependable supply. <em>Its producers deserve the world.</em>
+                Ethiopia grows more than it can sell at home. <em>We take it to market.</em>
               </>
             }
           />
           <Reveal className="mt-12 grid gap-8 text-[17px] leading-relaxed text-muted-foreground md:grid-cols-2 lg:ml-[calc(25%+0.625rem)] lg:gap-10">
             <p>
-              Ethiopia is one of Africa&apos;s fastest-growing economies and the birthplace of coffee. Its hospitals,
-              builders and industries need dependable access to global supply, while its farmers and cooperatives deserve
-              direct access to buyers abroad.
+              Ethiopia&apos;s highlands and valleys produce vegetables, fruit and pulses in quantities local markets
+              can&apos;t absorb — while neighbouring countries depend on imported food. Getting fresh produce across a
+              border quickly, with the right papers, is where most of the value is lost.
             </p>
             <p>
-              Angler Trading sits at that intersection. We source medical supplies, construction materials, vehicles and
-              energy from vetted suppliers worldwide, export Ethiopian coffee, tea and agricultural products, and
-              distribute essential goods to businesses across the country.
+              Angler Trading closes that gap. We buy from Ethiopian growers, grade and pack the produce, prepare export
+              documents and move it overland to buyers in Djibouti, Somalia and Kenya, or by sea to Pakistan. In the other
+              direction we import crop-protection products and commercial trucks for the Ethiopian market.
             </p>
           </Reveal>
         </div>
@@ -79,15 +78,15 @@ export default function AboutPage() {
       {/* Mission & vision */}
       <section className="pb-24 md:pb-32">
         <div className="container">
-          <div className="grid border-y border-foreground md:grid-cols-2">
+          <div className="grid border-y border-border md:grid-cols-2">
             {[
               {
                 label: 'Mission',
-                text: 'To make international trade seamless for Ethiopian businesses, with comprehensive import, export and wholesale services delivered to an uncompromising standard.',
+                text: 'To get Ethiopian produce to regional buyers fresh, fairly priced and fully documented — and to supply Ethiopian farms with the inputs and vehicles they need.',
               },
               {
                 label: 'Vision',
-                text: "To be Ethiopia's most trusted trading house — recognised abroad for reliability, integrity and responsible business.",
+                text: "To be the most trusted name in fresh-produce trade between Ethiopia and its neighbours, known for reliability, integrity and fair dealing.",
               },
             ].map((b, i) => (
               <Reveal key={b.label} delay={i * 0.08} className={i ? 'border-t border-border py-12 md:border-l md:border-t-0 md:py-16 md:pl-10' : 'py-12 md:py-16 md:pr-10'}>
@@ -128,7 +127,7 @@ export default function AboutPage() {
       <section className="pb-24 md:pb-32">
         <div className="container">
           <figure>
-            <div className="relative aspect-[4/3] overflow-hidden bg-muted md:aspect-[2.4/1]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted md:aspect-[2.4/1]">
               <Image
                 src="/images/photos/container-yard.webp"
                 alt="Aerial view of a container terminal at dusk, stacked containers in long rows"
@@ -137,7 +136,7 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <figcaption className="mt-4 font-mono text-[11px] tracking-[0.04em] text-muted-foreground">FIG. 02 — Container terminal</figcaption>
+            <figcaption className="mt-4 font-mono text-[11px] tracking-[0.04em] text-muted-foreground">FIG. 02 — Container terminal. Imports reach Ethiopia through the Port of Djibouti.</figcaption>
           </figure>
           <Figures className="mt-12" />
         </div>
@@ -151,10 +150,10 @@ export default function AboutPage() {
             label="Network"
             title={
               <>
-                Addis Ababa at the centre. <em>The world within reach.</em>
+                Addis Ababa at the centre. <em>The region within reach.</em>
               </>
             }
-            intro="Through the Djibouti corridor we connect Ethiopia with suppliers and buyers across the Middle East, Asia and Europe."
+            intro="By road to Djibouti, Somalia and Kenya; by sea through Djibouti to Pakistan, the UAE and China."
           />
           <div className="mt-16">
             <TradeNetwork />
@@ -162,7 +161,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Partners />
     </>
   )
 }

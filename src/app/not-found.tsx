@@ -12,7 +12,7 @@ export default function NotFound() {
   return (
     <section className="py-16 md:py-24">
       <div className="container">
-        <div className="grid gap-10 border-t border-foreground pt-8 lg:grid-cols-12">
+        <div className="grid gap-10 border-t border-border pt-8 lg:grid-cols-12">
           <p className="label pt-3 text-foreground lg:col-span-3">Error 404</p>
           <div className="lg:col-span-9">
             <h1 className="display-1">

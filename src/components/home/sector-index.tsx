@@ -37,7 +37,7 @@ export function SectorIndex() {
                   {s.title}
                 </span>
                 <span className="mt-2 block max-w-md text-[15px] leading-relaxed text-muted-foreground lg:hidden">{s.short}</span>
-                <span className="relative mt-5 block aspect-[16/9] overflow-hidden bg-muted lg:hidden">
+                <span className="relative mt-5 block aspect-[16/9] overflow-hidden rounded-2xl bg-muted lg:hidden">
                   <Image src={s.image} alt="" fill sizes="(min-width: 640px) 80vw, 100vw" className="object-cover" />
                 </span>
               </span>
@@ -55,7 +55,7 @@ export function SectorIndex() {
 
       <div className="hidden lg:col-span-5 lg:block">
         <div className="sticky top-28">
-          <div className="relative aspect-[4/5] overflow-hidden bg-muted">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
             <AnimatePresence initial={false}>
               <motion.div
                 key={current.id}

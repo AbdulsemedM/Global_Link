@@ -1,12 +1,15 @@
 // Single source of truth for company facts. Every page, the footer, metadata
 // and structured data read from here, so contact details can't drift apart.
+//
+// Trade facts (products, markets, routes, figures) reflect Angler Trading PLC's public customs
+// records as summarised by trade-data services (52wmb, Eximpedia, Tendata) up to March 2026.
 export const site = {
   name: 'Angler Trading PLC',
   shortName: 'Angler Trading',
   url: 'https://anglertrading.com',
-  tagline: 'Import · Export · Wholesale',
+  tagline: 'Fresh produce · Pulses · Agri-inputs',
   description:
-    'Angler Trading PLC is an Addis Ababa–based import, export and wholesale company connecting Ethiopian producers and businesses with global markets — medical supplies, construction materials, petroleum, vehicles, coffee and tea.',
+    'Angler Trading PLC is an Addis Ababa–based trading company exporting Ethiopian fresh vegetables, fruit and pulses to Djibouti, Somalia, Kenya and Pakistan, and importing agricultural inputs and commercial trucks.',
   email: 'info@anglertrading.com',
   phone: '+251 116 123 456',
   phoneHref: 'tel:+251116123456',
@@ -39,11 +42,12 @@ export const nav = [
   { name: 'Contact', href: '/contact' },
 ] as const
 
+// From public customs records, to March 2026
 export const stats = [
-  { value: 8, suffix: '+', label: 'Countries served' },
-  { value: 300, suffix: '+', label: 'Supplier & trade partners' },
-  { value: 10000, suffix: '+', label: 'Clients supplied' },
-  { value: 99, suffix: '%', label: 'On-time fulfilment' },
+  { value: 238, suffix: '+', label: 'International shipments' },
+  { value: 24, suffix: '', label: 'Trading partners' },
+  { value: 50, suffix: '+', label: 'Products traded' },
+  { value: 7, suffix: '', label: 'Trading countries' },
 ] as const
 
 export type Sector = {
@@ -52,7 +56,10 @@ export type Sector = {
   code: string
   title: string
   short: string
-  kind: 'Import' | 'Export' | 'Wholesale'
+  kind: 'Import' | 'Export'
+  /** Where the goods go (exports) or are delivered (imports), and how they get there */
+  markets: string
+  route: string
   image: string
   imageAlt: string
   description: string
@@ -67,267 +74,214 @@ export type Sector = {
 
 export const sectors: Sector[] = [
   {
-    id: 'medical-supplies',
-    code: 'MED',
-    title: 'Medical Supplies',
-    short: 'Medicines, equipment and consumables for hospitals, clinics and pharmacies.',
-    kind: 'Import',
-    image: '/images/photos/medical.webp',
-    imageAlt: 'Blister packs of tablets on a blue surface',
+    id: 'fresh-vegetables',
+    code: 'VEG',
+    title: 'Fresh Vegetables',
+    short: 'Cabbage, lettuce, potatoes, tomatoes, onions, garlic and herbs, exported fresh to regional buyers.',
+    kind: 'Export',
+    markets: 'Djibouti, Somalia',
+    route: 'Road via Dire Dawa or Jijiga customs',
+    image: '/images/photos/vegetables.webp',
+    imageAlt: 'Market baskets of fresh carrots, cucumbers, green beans and red chillies',
     description:
-      'We import and distribute human medicines, medical equipment and healthcare consumables from certified manufacturers, so facilities across Ethiopia can rely on consistent, quality-assured supply.',
+      'Our largest line. We buy fresh vegetables from Ethiopian growers, grade and pack them, and move them overland to buyers in Djibouti and Somalia within days of harvest — with export documentation and customs handled at Dire Dawa and Jijiga.',
     capabilities: [
-      'Sourcing from certified, audited manufacturers',
-      'Regulatory documentation and import permits',
-      'Cold-chain aware handling where required',
-      'Scheduled and emergency replenishment',
+      'Sourcing direct from Ethiopian growers',
+      'Grading, sorting and packing for export',
+      'Export permits and phytosanitary certificates',
+      'Fast overland delivery to keep produce fresh',
     ],
-    products: ['Pharmaceuticals', 'Diagnostic equipment', 'Surgical consumables', 'PPE', 'Lab supplies'],
-    seoTitle: 'Medical Supplies Importer in Ethiopia',
+    products: [
+      'Cabbage & lettuce',
+      'Potatoes',
+      'Tomatoes',
+      'White & red onions',
+      'Garlic',
+      'Root vegetables',
+      'Coriander & fresh herbs',
+      'Khat (chat), for licensed regional buyers',
+    ],
+    seoTitle: 'Fresh Vegetable Exporter in Ethiopia',
     seoDescription:
-      'Importer and distributor of medicines, medical equipment and healthcare consumables in Ethiopia, from certified manufacturers, for hospitals and clinics.',
-    keywords: ['medical supplies import Ethiopia', 'medical equipment supplier Addis Ababa', 'pharmaceutical importer Ethiopia', 'hospital supplies Ethiopia', 'healthcare consumables distributor'],
+      'Ethiopian fresh vegetables — cabbage, lettuce, potatoes, tomatoes, onions and garlic — graded, documented and delivered overland to Djibouti and Somalia.',
+    keywords: ['Ethiopian vegetable exporter', 'fresh produce export Ethiopia', 'vegetables to Djibouti', 'potato exporter Ethiopia', 'onion exporter Ethiopia'],
     faqs: [
-      { q: 'Can you import medicines and medical equipment into Ethiopia?', a: 'Yes. We source human medicines, diagnostic and medical equipment and healthcare consumables from certified manufacturers and handle import permits, regulatory documentation and customs clearance.' },
-      { q: 'Who do you supply medical products to?', a: 'Hospitals, clinics, pharmacies, NGOs and healthcare distributors across Ethiopia, on scheduled or emergency replenishment.' },
-      { q: 'Can you source a specific brand or product specification?', a: 'Yes. Share the product name, specification or tender document and we will source matching, certified products and quote landed cost.' },
+      { q: 'Which vegetables do you export?', a: 'Mainly cabbage, lettuce, potatoes, tomatoes, onions, garlic, root vegetables and fresh herbs such as coriander. Availability follows the Ethiopian growing seasons — ask us for what is in season now.' },
+      { q: 'How do you keep produce fresh in transit?', a: 'We pack close to harvest and move goods overland, so produce reaches buyers in Djibouti and Somalia within days. Export paperwork is prepared in advance to avoid waiting at the border.' },
+      { q: 'Can you supply on a regular schedule?', a: 'Yes. Most of our buyers take recurring shipments; we agree volumes and frequency up front and plan sourcing around them.' },
     ],
   },
   {
-    id: 'construction-materials',
-    code: 'CON',
-    title: 'Construction Materials',
-    short: 'Building materials, hardware, metals and plumbing for builders and retailers.',
-    kind: 'Import',
-    image: '/images/photos/construction.webp',
-    imageAlt: 'Construction workers placing steel reinforcement on a concrete deck',
+    id: 'fresh-fruit',
+    code: 'FRU',
+    title: 'Fresh Fruit',
+    short: 'Bananas, oranges and avocados from Ethiopian farms, for wholesale buyers across the region.',
+    kind: 'Export',
+    markets: 'Djibouti, Somalia',
+    route: 'Road via Dire Dawa or Jijiga customs',
+    image: '/images/photos/fruit.webp',
+    imageAlt: 'Bunches of ripe yellow bananas stacked together',
     description:
-      'From structural steel to finishing hardware, we supply contractors, developers and retailers with construction materials at wholesale and retail scale — on schedule and to specification.',
+      'Ethiopian bananas, citrus and avocados, sourced from producing regions and delivered to wholesale buyers in neighbouring markets. We handle grading, packing and export documentation so fruit arrives in saleable condition.',
     capabilities: [
-      'Project-based bulk procurement',
-      'Specification matching and technical support',
-      'Consolidated shipping to reduce landed cost',
-      'Site and warehouse delivery',
+      'Sourcing from producing regions across Ethiopia',
+      'Ripeness grading and careful packing',
+      'Export documentation and certificates',
+      'Consolidated loads for wholesale buyers',
     ],
-    products: ['Steel & metals', 'Cement & aggregates', 'Hardware & fixings', 'Plumbing systems', 'Finishing materials'],
-    seoTitle: 'Construction Materials in Ethiopia',
+    products: ['Bananas', 'Oranges', 'Avocados', 'Seasonal fruit on request'],
+    seoTitle: 'Ethiopian Fresh Fruit Exporter',
     seoDescription:
-      'Steel, cement, hardware, plumbing and finishing materials supplied in bulk or retail across Ethiopia, with project procurement and site delivery.',
-    keywords: ['construction materials supplier Ethiopia', 'steel importer Ethiopia', 'building materials Addis Ababa', 'hardware wholesale Ethiopia', 'plumbing supplies Ethiopia'],
+      'Ethiopian bananas, oranges and avocados graded, packed and exported to wholesale buyers in Djibouti, Somalia and the wider region.',
+    keywords: ['Ethiopian fruit exporter', 'banana exporter Ethiopia', 'avocado exporter Ethiopia', 'fresh fruit Djibouti', 'orange supplier Ethiopia'],
     faqs: [
-      { q: 'Do you supply construction projects in bulk?', a: 'Yes. We handle project-based procurement for contractors and developers, consolidating shipments to reduce landed cost and delivering to site or warehouse.' },
-      { q: 'Which construction materials do you import?', a: 'Structural steel and metals, cement and aggregates, hardware and fixings, plumbing systems and finishing materials.' },
-      { q: 'Do you also sell to retailers?', a: 'Yes. We supply hardware stores and building-material retailers at wholesale volume pricing.' },
+      { q: 'Which fruit can you supply?', a: 'Bananas, oranges and avocados are our main lines, with other seasonal fruit available on request.' },
+      { q: 'Do you supply wholesale quantities?', a: 'Yes. We work with wholesale and distribution buyers and consolidate loads to keep the landed cost down.' },
     ],
   },
   {
-    id: 'petroleum-products',
-    code: 'PET',
-    title: 'Petroleum & Energy',
-    short: 'Petroleum products, natural gas and lubricants for industry and commerce.',
-    kind: 'Import',
-    image: '/images/photos/petroleum.webp',
-    imageAlt: 'Refinery towers and stacks under an overcast sky',
+    id: 'pulses-grains',
+    code: 'PUL',
+    title: 'Pulses & Grains',
+    short: 'Pinto beans and other Ethiopian pulses, cleaned and bagged for buyers in Kenya, Pakistan and beyond.',
+    kind: 'Export',
+    markets: 'Kenya, Pakistan',
+    route: 'Road via Moyale; sea via Djibouti',
+    image: '/images/photos/pulses.webp',
+    imageAlt: 'Bowls of dried beans and lentils on a dark surface',
     description:
-      'We import and distribute petroleum products, natural gas and industrial lubricants, giving industrial and commercial clients a dependable energy supply backed by transparent pricing.',
+      'Ethiopia is one of Africa’s largest pulse producers. We source pinto beans and other pulses, have them cleaned and bagged to buyer specification, and ship by road to Kenya or by sea through Djibouti to markets such as Pakistan.',
     capabilities: [
-      'Contracted and spot supply options',
-      'Compliance with national energy regulations',
-      'Safe storage and handling partners',
-      'Industrial and fleet accounts',
+      'Sourcing from Ethiopian pulse-growing regions',
+      'Cleaning, grading and bagging to specification',
+      'Export documentation and certificates of origin',
+      'Road delivery to Kenya, sea freight via Djibouti',
     ],
-    products: ['Fuels', 'Natural gas', 'Industrial lubricants', 'Bitumen', 'Specialty oils'],
-    seoTitle: 'Petroleum & Lubricants in Ethiopia',
+    products: ['Pinto beans', 'Other dried beans', 'Lentils', 'Chickpeas', 'Grains on request'],
+    seoTitle: 'Ethiopian Pulses Exporter — Pinto Beans',
     seoDescription:
-      'Petroleum products, natural gas and industrial lubricants imported and distributed in Ethiopia, with contracted and spot supply for industry and fleets.',
-    keywords: ['petroleum products supplier Ethiopia', 'lubricants importer Ethiopia', 'industrial lubricants Addis Ababa', 'natural gas supply Ethiopia', 'fuel supplier Ethiopia'],
+      'Ethiopian pinto beans and pulses, cleaned and bagged to specification, exported by road to Kenya and by sea via Djibouti to Pakistan and other markets.',
+    keywords: ['Ethiopian pulses exporter', 'pinto beans exporter Ethiopia', 'beans supplier Ethiopia', 'pulses to Kenya', 'Ethiopian beans Pakistan'],
     faqs: [
-      { q: 'What petroleum products do you supply?', a: 'Fuels, natural gas, industrial lubricants, bitumen and specialty oils for industrial, commercial and fleet clients.' },
-      { q: 'Do you offer contracted supply?', a: 'Yes. We offer both contracted, scheduled supply and spot purchases, in compliance with national energy regulations.' },
+      { q: 'What volumes do you ship?', a: 'Typical orders run from a single truckload to full container loads. Recent shipments to Kenya have been around 125 tonnes; tell us your requirement and we will quote.' },
+      { q: 'Can you meet a specific grade or bag size?', a: 'Yes. Send your specification — grade, moisture, admixture and bag size — and we will clean and pack to it.' },
     ],
   },
   {
-    id: 'vehicle-import',
-    code: 'VEH',
-    title: 'Vehicle Import',
-    short: 'Commercial and personal vehicles, spare parts and accessories — cleared and delivered.',
+    id: 'agricultural-inputs',
+    code: 'AGR',
+    title: 'Agricultural Inputs',
+    short: 'Crop-protection products imported for Ethiopian farms, cooperatives and agro-dealers.',
     kind: 'Import',
+    markets: 'Nationwide, Ethiopia',
+    route: 'Sea via Djibouti, then road',
+    image: '/images/photos/agri-inputs.webp',
+    imageAlt: 'Rows of green crops on a hillside farm',
+    description:
+      'Healthy harvests start with the right inputs. We import crop-protection products — insecticides, fungicides and herbicides — from established international manufacturers and handle registration paperwork, customs clearance and delivery.',
+    capabilities: [
+      'Sourcing from established manufacturers',
+      'Import permits and regulatory documentation',
+      'Customs clearance through Djibouti',
+      'Delivery to cooperatives and agro-dealers',
+    ],
+    products: ['Insecticides', 'Fungicides', 'Herbicides', 'Other crop-protection products'],
+    seoTitle: 'Agricultural Inputs Importer in Ethiopia',
+    seoDescription:
+      'Crop-protection products — insecticides, fungicides and herbicides — imported from established manufacturers for Ethiopian farms, cooperatives and agro-dealers.',
+    keywords: ['agrochemical importer Ethiopia', 'crop protection Ethiopia', 'pesticide supplier Addis Ababa', 'agricultural inputs Ethiopia', 'herbicide importer Ethiopia'],
+    faqs: [
+      { q: 'Which products do you import?', a: 'Crop-protection products including insecticides, fungicides and herbicides, sourced from established international manufacturers.' },
+      { q: 'Do you handle the import paperwork?', a: 'Yes — import permits, regulatory documentation and customs clearance are part of the service.' },
+    ],
+  },
+  {
+    id: 'commercial-vehicles',
+    code: 'TRK',
+    title: 'Commercial Vehicles',
+    short: 'Goods-transport trucks imported from China, cleared and delivered in Ethiopia.',
+    kind: 'Import',
+    markets: 'Nationwide, Ethiopia',
+    route: 'Sea via Djibouti, then road',
     image: '/images/photos/vehicles.webp',
     imageAlt: 'White truck on an open highway through dry savanna',
     description:
-      'We handle vehicle importation end to end — sourcing, inspection, shipping, customs clearance and documentation — so you receive road-ready vehicles without the paperwork headache.',
+      'Moving produce takes reliable trucks. We import new goods-transport vehicles from Chinese manufacturers and handle shipping through Djibouti, customs clearance and registration-ready documentation.',
     capabilities: [
-      'Pre-shipment inspection',
+      'Sourcing new trucks from Chinese manufacturers',
+      'Shipping via the Port of Djibouti',
       'Customs clearance and duty guidance',
       'Registration-ready documentation',
-      'Spare parts and accessory sourcing',
     ],
-    products: ['Commercial vehicles', 'Passenger vehicles', 'Machinery', 'Spare parts', 'Accessories'],
-    seoTitle: 'Vehicle Import Services in Ethiopia',
+    products: ['Cargo trucks', 'Light commercial vehicles', 'Spare parts on request'],
+    seoTitle: 'Commercial Truck Importer in Ethiopia',
     seoDescription:
-      'End-to-end vehicle import into Ethiopia: sourcing, inspection, shipping via Djibouti, customs clearance and registration-ready documents.',
-    keywords: ['vehicle import Ethiopia', 'car import service Addis Ababa', 'commercial vehicle importer Ethiopia', 'vehicle customs clearance Ethiopia', 'spare parts import Ethiopia'],
+      'New goods-transport trucks imported from China, shipped via Djibouti, cleared through customs and delivered registration-ready in Ethiopia.',
+    keywords: ['truck importer Ethiopia', 'commercial vehicle import Ethiopia', 'Chinese trucks Ethiopia', 'cargo truck supplier Addis Ababa'],
     faqs: [
-      { q: 'Can you import a vehicle to Ethiopia for me?', a: 'Yes. We source the vehicle, arrange pre-shipment inspection and shipping via Djibouti, clear customs and provide registration-ready documentation.' },
-      { q: 'Do you import commercial vehicles and machinery?', a: 'Yes — commercial trucks, passenger vehicles, machinery, spare parts and accessories.' },
-      { q: 'Can you advise on import duties?', a: 'We provide duty guidance as part of every quote so you know the full landed cost before you commit.' },
-    ],
-  },
-  {
-    id: 'coffee-tea-export',
-    code: 'COF',
-    title: 'Coffee & Tea Export',
-    short: 'Premium Ethiopian coffee and tea, traceable from farm to international buyer.',
-    kind: 'Export',
-    image: '/images/photos/coffee.webp',
-    imageAlt: 'Roasted coffee beans on a dark surface',
-    description:
-      'Ethiopia is the birthplace of coffee. We bring its finest coffees and teas to international buyers through direct relationships with producers, rigorous quality control and fully managed export logistics.',
-    capabilities: [
-      'Direct trade with producers and cooperatives',
-      'Grading, cupping and quality certification',
-      'Export documentation and phytosanitary certificates',
-      'FOB and CIF shipping to global ports',
-    ],
-    products: ['Specialty green coffee', 'Commercial-grade coffee', 'Black & green tea', 'Spices', 'Pulses & oilseeds'],
-    seoTitle: 'Ethiopian Coffee & Tea Exporter',
-    seoDescription:
-      'Premium Ethiopian specialty and commercial green coffee, tea and spices exported worldwide — direct from producers, graded, documented, FOB or CIF.',
-    keywords: ['Ethiopian coffee exporter', 'Ethiopian green coffee supplier', 'specialty coffee Ethiopia export', 'Ethiopian tea exporter', 'buy Ethiopian coffee wholesale'],
-    faqs: [
-      { q: 'Which Ethiopian coffees do you export?', a: 'Specialty and commercial-grade green coffee sourced directly from producers and cooperatives, graded and cupped before shipment. Ask us for current lots and samples.' },
-      { q: 'Do you ship FOB or CIF?', a: 'Both. We quote FOB Djibouti or CIF to most major ports, with certificates of origin and phytosanitary certificates included.' },
-      { q: 'Can I request samples?', a: 'Yes. Contact us with your target profile and volume and we will arrange samples of available lots.' },
-    ],
-  },
-  {
-    id: 'wholesale-trade',
-    code: 'WHL',
-    title: 'Wholesale Trade',
-    short: 'Agricultural goods, grain and building supplies distributed nationwide.',
-    kind: 'Wholesale',
-    image: '/images/photos/wholesale.webp',
-    imageAlt: 'Warehouse racking stacked with palletised cartons',
-    description:
-      'Our wholesale division supplies agricultural products, grain and construction materials to businesses across Ethiopia, with competitive bulk pricing and a dependable, scheduled supply chain.',
-    capabilities: [
-      'Bulk purchasing and volume pricing',
-      'Recurring scheduled deliveries',
-      'Nationwide distribution network',
-      'Dedicated account management',
-    ],
-    products: ['Grains & cereals', 'Agricultural inputs', 'Edible oils', 'Building supplies', 'Packaged goods'],
-    seoTitle: 'Wholesale Supplier in Ethiopia',
-    seoDescription:
-      'Wholesale grain, agricultural products, edible oils and building supplies across Ethiopia, with volume pricing and scheduled nationwide delivery.',
-    keywords: ['wholesale supplier Ethiopia', 'grain wholesale Addis Ababa', 'agricultural products distributor Ethiopia', 'bulk supplier Ethiopia', 'edible oil wholesale Ethiopia'],
-    faqs: [
-      { q: 'What do you supply wholesale?', a: 'Grains and cereals, agricultural inputs, edible oils, building supplies and packaged goods.' },
-      { q: 'Do you deliver outside Addis Ababa?', a: 'Yes. Our distribution network delivers to businesses nationwide on recurring schedules.' },
+      { q: 'Can you import a specific truck model?', a: 'Yes. Tell us the model, configuration and quantity and we will source it and quote the full landed cost, including duties.' },
+      { q: 'Do you handle registration documents?', a: 'We provide registration-ready documentation along with customs clearance.' },
     ],
   },
 ]
 
 export const process = [
   {
-    title: 'Brief & sourcing',
-    description: 'Tell us what you need. We match it to vetted suppliers or buyers and return a clear, itemised quote.',
+    title: 'Sourcing',
+    description: 'We buy direct from Ethiopian growers — or, for imports, from established manufacturers — to your volume and specification.',
   },
   {
-    title: 'Verification',
-    description: 'Samples, specifications and certifications are checked before anything ships — no surprises on arrival.',
+    title: 'Grading & packing',
+    description: 'Produce is sorted, graded and packed for the journey; imports are inspected before they ship.',
   },
   {
-    title: 'Shipping & clearance',
-    description: 'We manage freight, insurance, documentation and customs so your goods move without delays.',
+    title: 'Documents & customs',
+    description: 'Export permits, phytosanitary certificates and clearance at Dire Dawa, Jijiga or Djibouti, prepared in advance.',
   },
   {
-    title: 'Delivery & support',
-    description: 'Goods arrive at your warehouse, site or port. Your account manager stays with you for the next order.',
+    title: 'Delivery',
+    description: 'Fast overland delivery to Djibouti, Somalia and Kenya, or by sea through Djibouti. One contact from order to arrival.',
   },
 ] as const
 
 export const values = [
-  { title: 'Integrity', description: 'Transparent pricing, honest timelines and ethical dealings with every partner.' },
-  { title: 'Innovation', description: 'Always looking for faster, smarter and more cost-effective ways to move goods.' },
-  { title: 'Partnership', description: 'Long-term relationships with clients, suppliers and the communities we work in.' },
-  { title: 'Excellence', description: 'Quality checks at every step, from supplier selection to final delivery.' },
-  { title: 'Global reach', description: 'A network that connects Ethiopian businesses with markets around the world.' },
-  { title: 'Sustainability', description: 'Responsible sourcing and trade practices that respect people and the planet.' },
+  { title: 'Freshness', description: 'Short supply chains from farm to buyer, so produce arrives in saleable condition.' },
+  { title: 'Integrity', description: 'Honest grading, transparent pricing and paperwork done properly.' },
+  { title: 'Reliability', description: 'Recurring shipments on the schedule we agree, season after season.' },
+  { title: 'Partnership', description: 'Long-term relationships with growers, buyers and suppliers across the region.' },
+  { title: 'Know-how', description: 'Practical experience of Ethiopian export rules, border crossings and regional markets.' },
+  { title: 'Responsibility', description: 'Fair dealing with farmers and respect for the communities we source from.' },
 ] as const
-
-export const testimonials = [
-  {
-    quote:
-      'Angler Trading has been instrumental in our medical supply chain. Their reliability and commitment to quality help us maintain the highest standards of care.',
-    author: 'Dr. Sarah Ahmed',
-    role: 'Medical Director',
-    company: 'Central Hospital',
-    image: '/images/people/sarah-ahmed.webp',
-    logo: '/images/clients/central-hospital.webp',
-  },
-  {
-    quote:
-      'Their construction materials imports helped us deliver multiple projects on time and on budget. Material quality and technical support are exceptional.',
-    author: 'Michael Tesfaye',
-    role: 'Project Manager',
-    company: 'BuildRight Construction',
-    image: '/images/people/michael-tesfaye.webp',
-    logo: '/images/clients/buildright.webp',
-  },
-  {
-    quote:
-      'The quality of their agricultural products and wholesale service exceeded our expectations. Deliveries are consistently on time.',
-    author: 'Emma Bekele',
-    role: 'Procurement Manager',
-    company: 'AgriGrow Ltd',
-    image: '/images/people/emma-bekele.webp',
-    logo: '/images/clients/agrigrow.webp',
-  },
-  {
-    quote:
-      'Working with Angler transformed our coffee export operations. Their market knowledge and logistics expertise opened new international markets for us.',
-    author: 'Daniel Haile',
-    role: 'Export Director',
-    company: 'Ethiopian Coffee Cooperative',
-    image: '/images/people/daniel-haile.webp',
-    logo: '/images/clients/coffee-cooperative.webp',
-  },
-] as const
-
-export const partners = [1, 2, 3, 4, 5].map((i) => ({
-  src: `/images/partners/partner-${i}.webp`,
-  alt: `Partner organisation ${i}`,
-}))
 
 // Principal trade lanes, drawn on the map and listed in the lanes table
 export const lanes = [
-  { ref: 'L-01', route: 'hamburg', from: 'Addis Ababa', to: 'Hamburg', via: 'Djibouti · Suez', cargo: 'Specialty green coffee', mode: 'Rail + Sea' },
-  { ref: 'L-02', route: 'jeddah', from: 'Addis Ababa', to: 'Jeddah', via: 'Djibouti', cargo: 'Coffee, tea & pulses', mode: 'Rail + Sea' },
-  { ref: 'L-03', route: 'shanghai', from: 'Shanghai', to: 'Addis Ababa', via: 'Djibouti', cargo: 'Steel, machinery & vehicles', mode: 'Sea + Rail' },
-  { ref: 'L-04', route: 'nhavaSheva', from: 'Nhava Sheva', to: 'Addis Ababa', via: 'Djibouti', cargo: 'Pharmaceuticals', mode: 'Sea + Rail' },
-  { ref: 'L-05', route: 'jebelAli', from: 'Jebel Ali', to: 'Addis Ababa', via: 'Djibouti', cargo: 'Lubricants & re-exports', mode: 'Sea + Rail' },
+  { ref: 'L-01', route: 'djibouti', from: 'Ethiopia', to: 'Djibouti', via: 'Dire Dawa customs', cargo: 'Vegetables & fruit', mode: 'Road' },
+  { ref: 'L-02', route: 'somalia', from: 'Ethiopia', to: 'Somalia', via: 'Jijiga customs', cargo: 'Vegetables & herbs', mode: 'Road' },
+  { ref: 'L-03', route: 'kenya', from: 'Ethiopia', to: 'Kenya', via: 'Moyale', cargo: 'Pinto beans', mode: 'Road' },
+  { ref: 'L-04', route: 'karachi', from: 'Ethiopia', to: 'Pakistan', via: 'Djibouti', cargo: 'Pulses', mode: 'Road + Sea' },
+  { ref: 'L-05', route: 'shanghai', from: 'China', to: 'Ethiopia', via: 'Djibouti', cargo: 'Trucks & crop-protection products', mode: 'Sea + Road' },
+  { ref: 'L-06', route: 'jebelAli', from: 'UAE', to: 'Ethiopia', via: 'Djibouti', cargo: 'Agricultural commodities', mode: 'Sea + Road' },
 ] as const
 
 export const faqs = [
   {
     q: 'What information do you need for a quote?',
-    a: 'The product or category, approximate quantity, required specifications or certifications, delivery location and your target timeline. The more detail you share, the more precise our quote.',
-  },
-  {
-    q: 'Do you handle customs clearance?',
-    a: 'Yes. For imports we manage documentation, duties guidance and clearance. For exports we prepare certificates of origin, phytosanitary certificates and all shipping documents.',
-  },
-  {
-    q: 'Is there a minimum order size?',
-    a: 'It depends on the sector. Wholesale and export orders are typically in bulk, while some construction and medical supplies can be supplied in smaller quantities. Ask us — we will tell you straight away.',
+    a: 'The product, quantity, grade or specification, destination and timing. For imports, the product or model and your delivery location. We reply within one business day.',
   },
   {
     q: 'Which markets do you export to?',
-    a: 'We work with buyers across the Middle East, Europe and Asia, shipping via the Djibouti corridor. We can quote FOB or CIF to most major ports.',
+    a: 'Mainly Djibouti and Somalia by road, Kenya by road via Moyale, and Pakistan by sea through Djibouti. We can quote for other destinations on request.',
   },
   {
-    q: 'How quickly will you respond?',
-    a: 'We reply to every inquiry within one business day, usually much faster during working hours.',
+    q: 'Do you handle export documentation and customs?',
+    a: 'Yes. We prepare export permits, phytosanitary certificates and certificates of origin, and clear goods through Dire Dawa, Jijiga or Djibouti.',
+  },
+  {
+    q: 'Is there a minimum order?',
+    a: 'Fresh produce usually moves by the truckload; pulses from one truckload up to container loads. Tell us what you need and we will tell you what is practical.',
+  },
+  {
+    q: 'Can you supply all year round?',
+    a: 'Many lines are available year-round thanks to Ethiopia’s varied growing regions; others are seasonal. Ask us what is in season for your delivery window.',
   },
 ] as const

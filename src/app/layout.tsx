@@ -10,19 +10,19 @@ import { site, sectors } from '@/lib/site'
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Import & Export from Ethiopia`,
+    default: `${site.name} — Fresh Produce Exporter, Ethiopia`,
     template: `%s | ${site.shortName}`,
   },
   description: site.description,
   keywords: [
-    'Ethiopia import export',
-    'Ethiopian coffee export',
-    'Ethiopian tea export',
-    'medical supplies import Ethiopia',
-    'construction materials Ethiopia',
-    'petroleum products Ethiopia',
-    'vehicle import Ethiopia',
-    'wholesale Addis Ababa',
+    'Ethiopian fresh produce exporter',
+    'Ethiopian vegetables export',
+    'Ethiopian fruit exporter',
+    'pinto beans exporter Ethiopia',
+    'export to Djibouti',
+    'export to Somalia',
+    'agricultural inputs Ethiopia',
+    'truck importer Ethiopia',
     'trading company Addis Ababa',
   ],
   applicationName: site.name,
@@ -37,12 +37,12 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Ethiopia's gateway to global trade`,
+    title: `${site.name} — Fresh from Ethiopia, delivered across the region`,
     description: site.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${site.name} — Ethiopia's gateway to global trade`,
+    title: `${site.name} — Fresh from Ethiopia, delivered across the region`,
     description: site.description,
     site: '@anglertrading',
   },
@@ -97,7 +97,7 @@ const jsonLd = {
           const [opens, closes] = h.time.split(' – ')
           return { '@type': 'OpeningHoursSpecification', dayOfWeek: DAY_MAP[h.days], opens, closes }
         }),
-      areaServed: [{ '@type': 'Country', name: 'Ethiopia' }, 'Middle East', 'Europe', 'Asia'],
+      areaServed: ['Ethiopia', 'Djibouti', 'Somalia', 'Kenya', 'Pakistan'].map((name) => ({ '@type': 'Country', name })),
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'sales',

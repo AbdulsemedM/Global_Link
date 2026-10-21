@@ -22,10 +22,10 @@ Almost all copy and company facts live in **`src/lib/site.ts`**:
 | Export        | Used for                                                                 |
 | ------------- | ------------------------------------------------------------------------ |
 | `site`        | Name, email, phone, address, hours, social links (header, footer, contact, schema) |
-| `sectors`     | The six sectors — index, mega menu, `/services/[id]` landing pages, photos, SEO titles/descriptions, keywords and FAQs |
+| `sectors`     | The five trade lines — index, mega menu, `/services/[id]` landing pages, photos, SEO titles/descriptions, keywords and FAQs |
 | `stats`       | Key figures under the hero and on the About page                        |
 | `lanes`       | Trade lanes drawn on the map and listed in the lanes table              |
-| `testimonials`, `partners`, `values`, `process`, `faqs` | Their respective sections |
+| `values`, `process`, `faqs` | Their respective sections |
 
 Adding an entry to `sectors` automatically creates a landing page, sitemap entry and navigation links. Give it a share image in `public/og/<id>.png` (1200×630).
 
@@ -57,7 +57,7 @@ The map is generated, not drawn: `npm run generate:map` projects Natural Earth c
 
 Photography lives in `public/images/photos/` (WebP, colour-graded for consistency) and is served through Next's image optimiser, which delivers right-sized AVIF/WebP per device. This needs `sharp`, which Next installs automatically.
 
-The sector photos are Unsplash stock (free for commercial use). Replace them with Angler's own photography where possible; keep the same file names or update `src/lib/site.ts`.
+The photos are Unsplash stock (free for commercial use). Replace them with Angler's own photography where possible; keep the same file names or update `src/lib/site.ts`.
 
 ## Contact form
 

@@ -24,8 +24,9 @@ export function PageHeader({
   className?: string
 }) {
   return (
-    <section className={cn('pb-16 pt-10 md:pb-20 md:pt-14', className)}>
-      <div className="container">
+    <section className={cn('relative overflow-hidden pb-16 pt-10 md:pb-20 md:pt-14', className)}>
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[520px] bg-[radial-gradient(60%_70%_at_75%_0%,hsl(var(--accent)/0.12),transparent_70%)]" />
+      <div className="container relative">
         <nav aria-label="Breadcrumb">
           <ol className="label flex flex-wrap items-center gap-2">
             {crumbs.map((c, i) => (
@@ -45,7 +46,7 @@ export function PageHeader({
           </ol>
         </nav>
 
-        <div className="mt-14 grid gap-10 border-t border-foreground pt-8 md:mt-20 lg:grid-cols-12">
+        <div className="mt-14 grid gap-10 md:mt-20 lg:grid-cols-12">
           <p className="label pt-3 text-foreground lg:col-span-3">{label}</p>
           <div className="lg:col-span-9">
             <h1 className="display-1">{title}</h1>
@@ -60,7 +61,7 @@ export function PageHeader({
 
         {image && (
           <figure className="mt-14 md:mt-20">
-            <div className="relative aspect-[4/3] overflow-hidden bg-muted md:aspect-[21/9]">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted md:aspect-[21/9]">
               <Image src={image.src} alt={image.alt} fill loading="eager" sizes="(min-width: 1440px) 1360px, 100vw" className="object-cover" />
             </div>
             {image.caption && <figcaption className="label mt-4 normal-case tracking-[0.04em]">{image.caption}</figcaption>}

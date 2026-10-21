@@ -21,8 +21,9 @@ export function SectionHead({
   children?: React.ReactNode
 }) {
   return (
-    <Reveal className={cn('grid gap-6 border-t border-foreground pt-6 lg:grid-cols-12 lg:gap-10', className)}>
-      <p className="label pt-2 text-foreground lg:col-span-3">
+    <Reveal className={cn('grid gap-6 lg:grid-cols-12 lg:gap-10', className)}>
+      <p className="label flex items-center gap-3 pt-3 text-foreground lg:col-span-3 lg:items-start">
+        <span aria-hidden className="mt-[3px] hidden h-px w-6 bg-brand-500 lg:block" />
         {index && <span className="text-accent">{index} — </span>}
         {label}
       </p>

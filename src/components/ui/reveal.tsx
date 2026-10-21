@@ -10,10 +10,10 @@ type RevealProps = HTMLMotionProps<'div'> & {
 export function Reveal({ delay = 0, children, ...props }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.6, delay, ease: [0.2, 0.7, 0.2, 1] }}
       {...props}
     >
       {children}

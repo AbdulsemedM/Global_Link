@@ -94,7 +94,7 @@ export function ContactForm() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="border-t border-foreground pt-8"
+            className="border-t border-border pt-8"
             role="status"
           >
             <p className="label text-foreground">Inquiry prepared</p>
