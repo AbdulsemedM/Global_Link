@@ -1,22 +1,25 @@
 "use client"
 
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
+import { cn } from '@/lib/utils'
 
-export function ThemeToggle() {
-  const { setTheme, theme } = useTheme()
+export function ThemeToggle({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme()
 
+  // Both icons are always rendered and swapped with the `dark` class, so there is no hydration flash.
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="border-2 border-[#AEEA00]/20 hover:border-[#AEEA00]/50 transition-all duration-300"
+    <button
+      type="button"
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      className={cn(
+        'relative inline-flex h-11 w-11 items-center justify-center rounded-sm border border-foreground/15 transition-colors hover:border-foreground/50',
+        className
+      )}
+      aria-label="Toggle colour theme"
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+      <Sun strokeWidth={1.5} className="h-[18px] w-[18px] transition-transform duration-500 dark:-rotate-90 dark:scale-0" />
+      <Moon strokeWidth={1.5} className="absolute h-[18px] w-[18px] rotate-90 scale-0 transition-transform duration-500 dark:rotate-0 dark:scale-100" />
+    </button>
   )
-} 
+}

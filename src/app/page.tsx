@@ -1,369 +1,156 @@
-"use client"
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { HeroMedia } from '@/components/home/hero-media'
+import { SectorIndex } from '@/components/home/sector-index'
+import { SectionHead } from '@/components/sections/section-head'
+import { Process } from '@/components/sections/process'
+import { Testimonials } from '@/components/sections/testimonials'
+import { Partners } from '@/components/sections/partners'
+import { Figures } from '@/components/sections/figures'
+import { TradeNetwork } from '@/components/visuals/trade-network'
+import { Button } from '@/components/ui/button'
+import { Reveal } from '@/components/ui/reveal'
+import { pageMetadata } from '@/lib/seo'
+import { site } from '@/lib/site'
 
-import { motion, useAnimationControls } from 'framer-motion'
-import { Hero } from '@/components/sections/hero'
-import { Services } from '@/components/sections/services'
-import { Stats } from '@/components/sections/stats'
-import { Contact } from '@/components/sections/contact'
-import { TruckIcon, GlobeAltIcon, BuildingStorefrontIcon } from '@heroicons/react/24/outline'
-import { ParticleNetwork } from '@/components/effects/particle-network'
-import { useTheme } from 'next-themes'
-import Image from 'next/image'
-import React from 'react'
-
-const features = [
-  {
-    title: "Import Excellence",
-    description: "Comprehensive import solutions for medical supplies, construction materials, vehicles, and petroleum products.",
-    icon: GlobeAltIcon,
-    color: "from-green-500 to-green-600",
-    delay: 0.2
-  },
-  { 
-    title: "Export Expertise",
-    description: "Specialized in coffee and tea export, connecting Ethiopian products with global markets.",
-    icon: TruckIcon,
-    color: "from-green-600 to-green-700",
-    delay: 0.4
-  },
-  {
-    title: "Wholesale Solutions",
-    description: "Supply of agricultural products, construction materials, and grain products to businesses nationwide.",
-    icon: BuildingStorefrontIcon,
-    color: "from-green-500 to-secondary",
-    delay: 0.6
-  }
-]
-
-const testimonials = [
-  {
-    content: "Angler Trading PLC has been instrumental in our medical supply chain. Their reliability, professionalism, and commitment to quality have helped us maintain the highest standards of healthcare delivery.",
-    author: "Dr. Sarah Ahmed",
-    role: "Medical Director",
-    company: "Central Hospital",
-    image: "/images/testimonials/Dr. sarah.jpeg",
-    logo: "/images/testimonials/central hospital.png",
-    rating: 5
-  },
-  {
-    content: "Their expertise in construction materials import has helped us complete numerous projects on time and within budget. The quality of materials and their technical support are exceptional.",
-    author: "Michael Tesfaye",
-    role: "Project Manager",
-    company: "BuildRight Construction",
-    image: "/images/testimonials/michael tesfaye.jpg",
-    logo: "/images/testimonials/build right.png",
-    rating: 5
-  },
-  {
-    content: "The quality of agricultural products and their wholesale services have exceeded our expectations. Their commitment to timely delivery and customer service is outstanding.",
-    author: "Emma Bekele",
-    role: "Procurement Manager",
-    company: "AgriGrow Ltd",
-    image: "/images/testimonials/emma bekele.jpg",
-    logo: "/images/testimonials/agri grow.jpeg",
-    rating: 5
-  },
-  {
-    content: "Working with Angler Trading has transformed our coffee export operations. Their market knowledge and logistics expertise have helped us reach new international markets.",
-    author: "Daniel Haile",
-    role: "Export Director",
-    company: "Ethiopian Coffee Cooperative",
-    image: "/images/testimonials/daniel haile.jpeg",
-    logo: "/images/testimonials/coffee.png",
-    rating: 5
-  }
-]
-
-
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
+export const metadata = {
+  ...pageMetadata({
+    title: `${site.name} — Import & Export from Ethiopia`,
+    description:
+      'Addis Ababa trading company importing medical supplies, construction materials, vehicles and fuel, and exporting Ethiopian coffee and tea. Get a quote.',
+    path: '/',
+  }),
+  // The home page uses the full title without the "| Angler Trading" template suffix
+  title: { absolute: `${site.name} — Import & Export from Ethiopia` },
 }
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5
-    }
-  }
-}
+const LINES = [
+  { label: 'Import', text: 'Medical supplies, construction materials, vehicles and energy, sourced from vetted manufacturers.' },
+  { label: 'Export', text: 'Ethiopian coffee, tea and pulses, graded and documented for buyers abroad.' },
+  { label: 'Wholesale', text: 'Grain, agricultural goods and building supplies distributed nationwide.' },
+]
 
-export default function Home() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-  const controls = useAnimationControls()
-
-  const startAnimation = React.useCallback(() => {
-    controls.start({
-      x: -1920,
-      transition: {
-        duration: 20,
-        repeat: Infinity,
-        repeatType: "loop",
-        ease: "linear"
-      }
-    })
-  }, [controls])
-
-  React.useEffect(() => {
-    startAnimation()
-  }, [startAnimation])
-
+export default function HomePage() {
   return (
-    <main className="min-h-screen w-full overflow-x-hidden" role="main" aria-label="Homepage">
-      <Hero />
-      
-      {/* Features Section */}
-      <section className="w-full py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden" aria-labelledby="features-heading">
-        <ParticleNetwork isDark={isDark} />
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 id="features-heading" className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Why Choose <span className="text-green-500">Angler Trading</span>?
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Your trusted partner in international trade and wholesale distribution
-            </p>
-          </motion.div>
+    <>
+      {/* Hero */}
+      <section className="pt-10 md:pt-14">
+        <div className="container">
+          <div className="label flex items-center justify-between border-b border-border pb-4">
+            <span className="flex items-center gap-3">
+              <span aria-hidden className="h-2 w-2 bg-brand-500" />
+              Import · Export · Wholesale
+            </span>
+            <span className="hidden sm:block">Trading house · Addis Ababa</span>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
-            {features.map((feature) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: feature.delay }}
-                className="relative group cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                role="listitem"
-                aria-labelledby={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
-                  <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6`} aria-hidden="true">
-                    <feature.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 id={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`} className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+          <h1 className="display-1 mt-12 max-w-[15ch] md:mt-16 xl:text-[7.5rem]">
+            The trading partner between <em>Ethiopia</em> and the world.
+          </h1>
+
+          <div className="mt-12 grid items-end gap-8 lg:grid-cols-12 lg:gap-10">
+            <p className="lead lg:col-span-6">
+              We import the medical supplies, construction materials, vehicles and fuel Ethiopian businesses depend on —
+              and export the country&apos;s finest coffee and tea to buyers abroad.
+            </p>
+            <div className="flex flex-wrap gap-3 lg:col-span-6 lg:justify-end">
+              <Button asChild>
+                <Link href="/contact">
+                  Request a quote <ArrowRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/services">Explore our services</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <figure className="container mt-14 md:mt-20">
+          <HeroMedia src="/images/photos/hero-vessel.webp" alt="Aerial view of a loaded container ship guided by tugboats into port" />
+          <figcaption className="mt-4 flex flex-col gap-1 font-mono text-[11px] tracking-[0.04em] text-muted-foreground sm:flex-row sm:justify-between">
+            <span>FIG. 01 — Ocean freight</span>
+            <span>Most of Ethiopia&apos;s trade moves by sea through the Port of Djibouti.</span>
+          </figcaption>
+        </figure>
+
+        <div className="container mt-16">
+          <Figures />
+        </div>
+      </section>
+
+      {/* Company statement */}
+      <section className="py-24 md:py-36">
+        <div className="container grid gap-8 lg:grid-cols-12 lg:gap-10">
+          <p className="label pt-3 text-foreground lg:col-span-3">
+            <span className="text-accent">01 — </span>The company
+          </p>
+          <Reveal className="lg:col-span-9">
+            <p className="font-serif text-[clamp(1.75rem,3.1vw,2.9rem)] font-[360] leading-[1.22] tracking-[-0.015em]">
+              Angler Trading is an Addis Ababa trading house.{' '}
+              <span className="text-muted-foreground">
+                We import what Ethiopia&apos;s hospitals, builders and industries depend on, export the coffee and tea the
+                country is known for, and take responsibility for everything in between — sourcing, verification, freight,
+                customs and delivery.
+              </span>
+            </p>
+            <ul className="mt-14 grid border-t border-border sm:grid-cols-3">
+              {LINES.map((l, i) => (
+                <li key={l.label} className={`py-6 sm:pr-6 ${i > 0 ? 'border-t sm:border-l sm:border-t-0 sm:pl-6' : ''}`}>
+                  <p className="label text-foreground">{l.label}</p>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{l.text}</p>
+                </li>
+              ))}
+            </ul>
+            <Link href="/about" className="group mt-8 inline-flex items-center gap-2 font-medium">
+              <span className="link-underline">More about the company</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Sectors */}
+      <section className="pb-24 md:pb-36">
+        <div className="container">
+          <SectionHead
+            index="02"
+            label="Sectors"
+            title={
+              <>
+                Six sectors, handled <em>end to end.</em>
+              </>
+            }
+            intro="Each sector has its own specialists, supplier network and compliance know-how — and the same team accountable from the first quote to final delivery."
+          />
+          <div className="mt-16">
+            <SectorIndex />
           </div>
         </div>
       </section>
 
-      <Stats />
-      <Services />
-
-      {/* Testimonials Section */}
-      <section className="w-full py-24 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 overflow-hidden relative">
-        <ParticleNetwork isDark={isDark} />
-        
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.05, scale: 1 }}
-            transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute -right-1/4 top-1/4 w-1/2 h-1/2 rounded-full bg-gradient-to-br from-green-500 to-green-600 blur-3xl"
+      {/* Network */}
+      <section className="pb-24 md:pb-36">
+        <div className="container">
+          <SectionHead
+            index="03"
+            label="Network"
+            title={
+              <>
+                Connected to the world through the <em>Djibouti corridor.</em>
+              </>
+            }
+            intro="Goods move between Addis Ababa and the Port of Djibouti on the Ethio-Djibouti railway, then by sea to and from the world's major trading ports. Select a lane below to trace it on the map."
           />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 0.05, scale: 1 }}
-            transition={{ duration: 1.5, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
-            className="absolute -left-1/4 bottom-1/4 w-1/2 h-1/2 rounded-full bg-gradient-to-tr from-secondary via-secondary to-green-600 blur-3xl"
-          />
-        </div>
-
-        <div className="container relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-16"
-          >
-            <span className="inline-flex items-center px-4 py-2 rounded-full bg-green-500/10 text-green-500 dark:bg-green-500/20 dark:text-green-400 text-sm font-medium mb-4">
-              <span className="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse" />
-              Client Success Stories
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Trusted by Industry Leaders
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              See how we&apos;ve helped businesses across different sectors achieve their goals through our comprehensive trading solutions
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
-            {testimonials.map((testimonial) => (
-              <motion.div
-                key={testimonial.author}
-                variants={itemVariants}
-                className="relative group"
-                whileHover={{ y: -5 }}
-              >
-                <div className="absolute -inset-x-4 -inset-y-4 bg-gradient-to-r from-green-500/5 to-secondary/5 dark:from-green-500/10 dark:to-secondary/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="relative bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
-                  {/* Rating */}
-                  <div className="flex items-center mb-6">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-5 h-5 text-yellow-400"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-
-                  {/* Quote */}
-                  <blockquote className="relative">
-                    <svg
-                      className="absolute -top-6 -left-6 h-12 w-12 text-gray-100 dark:text-gray-700 transform -rotate-12"
-                      fill="currentColor"
-                      viewBox="0 0 32 32"
-                      aria-hidden="true"
-                    >
-                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                    </svg>
-                    <p className="text-lg text-gray-600 dark:text-gray-300 italic relative z-10">
-                      &ldquo;{testimonial.content}&rdquo;
-                    </p>
-                  </blockquote>
-
-                  {/* Author Info */}
-                  <div className="mt-8 flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="relative h-12 w-12 rounded-full overflow-hidden">
-                        <Image
-                          src={testimonial.image}
-                          alt={testimonial.author}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="ml-4">
-                        <div className="font-semibold text-gray-900 dark:text-white">
-                          {testimonial.author}
-                        </div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">
-                          {testimonial.role} at {testimonial.company}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Company Logo */}
-                    <div className="relative h-8 w-24">
-                      <Image
-                        src={testimonial.logo}
-                        alt={testimonial.company}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-16 pt-16 border-t border-gray-200 dark:border-gray-700"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
-                Trusted by Companies Worldwide
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Join hundreds of satisfied clients who trust us with their trading needs
-              </p>
-            </div>
-            
-            <div className="relative w-full overflow-hidden">
-              <motion.div 
-                className="flex items-center gap-16"
-                initial={{ x: 0 }}
-                animate={controls}
-                onHoverStart={() => controls.stop()}
-                onHoverEnd={() => startAnimation()}
-              >
-                {/* First set of logos */}
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <motion.div
-                    key={`first-${index}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative h-16 w-40 flex-shrink-0"
-                  >
-                    <Image
-                      src={`/images/partners/partner-${index}.png`}
-                      alt={`Partner ${index}`}
-                      fill
-                      className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </motion.div>
-                ))}
-                {/* Duplicate set of logos for seamless loop */}
-                {[1, 2, 3, 4, 5].map((index) => (
-                  <motion.div
-                    key={`second-${index}`}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative h-16 w-40 flex-shrink-0"
-                  >
-                    <Image
-                      src={`/images/partners/partner-${index}.png`}
-                      alt={`Partner ${index}`}
-                      fill
-                      className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                    />
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
+          <div className="mt-16">
+            <TradeNetwork />
+          </div>
         </div>
       </section>
 
-      <Contact />
-    </main>
+      <Process index="04" />
+      <Testimonials index="05" />
+      <Partners />
+    </>
   )
-} 
+}

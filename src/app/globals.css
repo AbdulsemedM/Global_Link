@@ -4,82 +4,122 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 10% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 220 10% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 10% 10%;
-    --primary: 195 100% 35%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 25 100% 45%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 195 20% 90%;
-    --muted-foreground: 220 10% 40%;
-    --accent: 25 100% 45%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 10% 90%;
-    --input: 220 10% 90%;
-    --ring: 195 100% 35%;
-    --radius: 0.5rem;
+    --background: 47 24% 93.5%;
+    --foreground: 140 11% 7%;
+    --card: 48 33% 97%;
+    --card-foreground: 140 11% 7%;
+    --muted: 45 18% 89%;
+    --muted-foreground: 110 4% 36%;
+    --accent: 97 63% 28%;
+    --border: 44 13% 80%;
+    --input: 44 10% 72%;
+    --ring: 97 63% 28%;
+    color-scheme: light;
   }
 
   .dark {
-    --background: 220 10% 10%;
-    --foreground: 0 0% 100%;
-    --card: 220 10% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 220 10% 10%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 195 100% 45%;
-    --primary-foreground: 220 10% 10%;
-    --secondary: 25 100% 55%;
-    --secondary-foreground: 220 10% 10%;
-    --muted: 195 20% 20%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 25 100% 55%;
-    --accent-foreground: 220 10% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 220 10% 20%;
-    --input: 220 10% 20%;
-    --ring: 195 100% 45%;
+    --background: 140 10% 6%;
+    --foreground: 45 18% 90%;
+    --card: 140 8% 8.5%;
+    --card-foreground: 45 18% 90%;
+    --muted: 140 7% 12%;
+    --muted-foreground: 80 5% 62%;
+    --accent: 97 58% 55%;
+    --border: 140 6% 18%;
+    --input: 140 6% 26%;
+    --ring: 97 58% 55%;
+    color-scheme: dark;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground overflow-x-hidden;
-  }
+
   html {
-    @apply scroll-smooth overflow-x-hidden;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
   }
-  #__next {
-    @apply overflow-x-hidden;
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
+
+  body {
+    @apply bg-background font-sans text-[16px] leading-relaxed text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-brand-500 text-ink;
+  }
+
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@layer components {
   .container {
-    @apply mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl w-full;
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+
+  /* Editorial serif headings. Optical size follows font size automatically. */
+  .display-1 {
+    @apply font-serif font-[340] leading-[0.98] tracking-[-0.028em];
+    font-size: clamp(2.75rem, 6.6vw, 6.75rem);
+  }
+  .display-2 {
+    @apply font-serif font-[360] leading-[1.02] tracking-[-0.022em];
+    font-size: clamp(2.25rem, 4.4vw, 4.25rem);
+  }
+  .display-3 {
+    @apply font-serif font-[380] leading-[1.1] tracking-[-0.015em];
+    font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+  }
+  /* Italic emphasis carries the brand green: deep on paper, bright on dark surfaces */
+  .display-1 em,
+  .display-2 em,
+  .display-3 em {
+    @apply font-[330] italic text-accent;
+  }
+
+  .lead {
+    @apply text-lg leading-relaxed text-muted-foreground md:text-xl md:leading-relaxed;
+  }
+
+  /* Monospaced metadata label: section indices, captions, table headers */
+  .label {
+    @apply font-mono text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-muted-foreground;
+  }
+
+  /* Text link with a hairline underline that draws in on hover */
+  .link-underline {
+    @apply bg-[length:0%_1px] bg-left-bottom bg-no-repeat pb-0.5 transition-[background-size] duration-500 ease-editorial;
+    background-image: linear-gradient(currentColor, currentColor);
+  }
+  .link-underline:hover,
+  .group:hover .link-underline {
+    @apply bg-[length:100%_1px];
   }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-gray-800;
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-500;
-} 

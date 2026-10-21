@@ -1,129 +1,131 @@
-"use client"
-
-import { useState } from 'react'
-import { motion } from 'framer-motion'
 import Link from 'next/link'
-
-const quickLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Services', href: '/services' },
-  { name: 'Contact', href: '/contact' }
-]
-
-const services = [
-  { name: 'Import Services', href: '/services#import' },
-  { name: 'Export Services', href: '/services#export' },
-  { name: 'Wholesale', href: '/services#wholesale' },
-  { name: 'Medical Supplies', href: '/services#medical' },
-  { name: 'Construction Materials', href: '/services#construction' }
-]
-
-const contact = [
-  { label: 'Phone', value: '+251 116 123 456' },
-  { label: 'Email', value: 'info@anglertrading.com' },
-  { label: 'Address', value: 'Bole Road, Addis Ababa, Ethiopia' }
-]
+import { ArrowRight, ArrowUp } from 'lucide-react'
+import { Logo } from '@/components/brand/logo'
+import { Button } from '@/components/ui/button'
+import { LocalTime } from '@/components/ui/local-time'
+import { nav, sectors, site } from '@/lib/site'
 
 export function Footer() {
-  const [email, setEmail] = useState('')
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle newsletter subscription
-    console.log('Newsletter subscription:', email)
-    setEmail('')
-  }
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="col-span-1">
-            <h3 className="text-2xl font-bold text-white mb-4">Angler Trading</h3>
-            <p className="mb-4 text-gray-400">
-              Your trusted partner in international trade and logistics. Connecting businesses worldwide with reliable and efficient solutions.
+    <footer className="dark bg-ink text-paper">
+      {/* Closing call to action on the brand forest band */}
+      <div className="bg-forest">
+        <div className="container grid gap-10 py-20 md:py-28 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <p className="label text-brand-300">Start a conversation</p>
+            <h2 className="display-2 mt-6">
+              Tell us what needs to move. <em>We&apos;ll handle the rest.</em>
+            </h2>
+          </div>
+          <div className="flex flex-col justify-end gap-6 lg:col-span-4">
+            <p className="text-paper/75">
+              Share the product, quantity and destination. A trade specialist replies within one business day with
+              options and an itemised quote.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild>
+                <Link href="/contact">
+                  Request a quote <ArrowRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outline-light">
+                <a href={site.phoneHref}>Call {site.phone}</a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+
+        <div className="grid gap-12 py-16 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <Logo />
+            <address className="mt-8 not-italic leading-relaxed text-paper/65">
+              {site.address.street}
+              <br />
+              {site.address.city}, {site.address.country}
+            </address>
+            <p className="mt-6 font-mono text-xs text-paper/60">
+              <LocalTime />
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <Link 
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Our Services</h4>
-            <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service.name}>
-                  <Link 
-                    href={service.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {service.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Newsletter */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Newsletter</h4>
-            <p className="text-gray-400 mb-4">Subscribe to our newsletter for updates and insights.</p>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-                  required
-                />
-              </div>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="w-full px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-lg transition-all duration-300"
-              >
-                Subscribe
-              </motion.button>
-            </form>
-          </div>
-        </div>
-
-        {/* Contact Info */}
-        <div className="mt-12 pt-8 border-t border-gray-800">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {contact.map((item) => (
-              <div key={item.label} className="text-center">
-                <span className="text-gray-400">{item.label}: </span>
-                <span className="text-white">{item.value}</span>
-              </div>
+          <FooterColumn title="Services" className="lg:col-span-3">
+            {sectors.map((s) => (
+              <FooterLink key={s.id} href={`/services/${s.id}`}>
+                {s.title}
+              </FooterLink>
             ))}
-          </div>
+          </FooterColumn>
+
+          <FooterColumn title="Company" className="lg:col-span-2">
+            {nav.map((item) => (
+              <FooterLink key={item.href} href={item.href}>
+                {item.name}
+              </FooterLink>
+            ))}
+          </FooterColumn>
+
+          <FooterColumn title="Contact" className="lg:col-span-3">
+            <li>
+              <a href={`mailto:${site.email}`} className="link-underline text-paper/75 hover:text-paper">
+                {site.email}
+              </a>
+            </li>
+            <li>
+              <a href={site.phoneHref} className="link-underline text-paper/75 hover:text-paper">
+                {site.phone}
+              </a>
+            </li>
+            {site.hours.map((h) => (
+              <li key={h.days} className="flex justify-between gap-4 font-mono text-xs text-paper/60">
+                <span>{h.days}</span>
+                <span>{h.time}</span>
+              </li>
+            ))}
+          </FooterColumn>
         </div>
 
-        <div className="mt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} Angler Trading PLC. All rights reserved.</p>
+        <div className="flex flex-col gap-4 border-t border-paper/15 py-8 font-mono text-[11px] tracking-[0.06em] text-paper/60 md:flex-row md:items-center md:justify-between">
+          <p>
+            © {year} {site.name}. All rights reserved.
+          </p>
+          <ul className="flex flex-wrap gap-6">
+            {site.social.map((s) => (
+              <li key={s.name}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="hover:text-paper">
+                  {s.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="#main" className="inline-flex items-center gap-2 hover:text-paper">
+            Back to top <ArrowUp className="h-3 w-3" />
+          </a>
         </div>
       </div>
     </footer>
   )
-} 
+}
+
+function FooterColumn({ title, className, children }: { title: string; className?: string; children: React.ReactNode }) {
+  return (
+    <div className={className}>
+      <h3 className="label text-paper/60">{title}</h3>
+      <ul className="mt-6 space-y-3 text-[15px]">{children}</ul>
+    </div>
+  )
+}
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <li>
+      <Link href={href} className="link-underline text-paper/75 transition-colors hover:text-paper">
+        {children}
+      </Link>
+    </li>
+  )
+}

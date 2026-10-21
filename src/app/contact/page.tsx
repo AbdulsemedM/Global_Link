@@ -1,293 +1,115 @@
-"use client"
+import { Suspense } from 'react'
+import { PageHeader } from '@/components/sections/page-header'
+import { Faq } from '@/components/sections/faq'
+import { ContactForm } from '@/components/contact/contact-form'
+import { JsonLd } from '@/components/seo/json-ld'
+import { LocalTime } from '@/components/ui/local-time'
+import { absoluteUrl, breadcrumbJsonLd, organizationRef, pageMetadata } from '@/lib/seo'
+import { faqs, site } from '@/lib/site'
 
-import { useState } from "react"
-import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Zap } from "lucide-react"
-import { ParticleNetwork } from "@/components/effects/particle-network"
+export const metadata = pageMetadata({
+  title: 'Contact Us — Request a Quote',
+  description: `Request an import, export or wholesale quote. Call ${site.phone} or email ${site.email} — we reply within one business day.`,
+  path: '/contact',
+  keywords: ['contact Angler Trading', 'import quote Ethiopia', 'export inquiry Ethiopia', 'trading company Addis Ababa contact'],
+})
 
 export default function ContactPage() {
-  const { theme } = useTheme()
-  const isDark = theme === 'dark'
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-    // Handle form submission here
-  }
-
   return (
-    <div className="min-h-screen bg-white dark:bg-black transition-colors duration-300">
-      {/* Particle Network Background */}
-      <ParticleNetwork isDark={isDark} />
+    <>
+      <JsonLd
+        data={[
+          breadcrumbJsonLd([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+          { '@context': 'https://schema.org', '@type': 'ContactPage', url: absoluteUrl('/contact'), about: organizationRef },
+        ]}
+      />
 
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-[#AEEA00]/10 text-[#AEEA00] px-4 py-2 rounded-full text-sm font-medium mb-6">
-            <Zap className="w-4 h-4" />
-            Let&lsquo;s Connect
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-black dark:text-white mb-6">
-            Get In{" "}
-            <span className="relative">
-              Touch
-              <div className="absolute -bottom-2 left-0 right-0 h-3 bg-[#AEEA00]/30 -skew-x-12"></div>
-            </span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              Ready to start something amazing together? We&lsquo;d love to hear from you. Drop us a line and let&lsquo;s make magic
-            happen.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        crumbs={[
+          { name: 'Home', href: '/' },
+          { name: 'Contact', href: '/contact' },
+        ]}
+        label="Contact"
+        title={
+          <>
+            Start a <em>conversation.</em>
+          </>
+        }
+        intro="Tell us what you need to import, export or source. A trade specialist will come back with clear options and an itemised quote within one business day."
+      />
 
-      {/* Main Content */}
-      <section className="py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h2 className="text-3xl font-bold text-black dark:text-white mb-6">Let&lsquo;s Start a Conversation</h2>
-                <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
-                  Whether you have a question, want to start a project, or just want to say hello, we&lsquo;re here and ready
-                  to chat. Choose your preferred way to reach out.
+      <section className="pb-24 md:pb-32">
+        <div className="container grid gap-16 lg:grid-cols-12 lg:gap-10">
+          <aside className="lg:col-span-4">
+            <dl className="border-t border-foreground">
+              <Detail label="Email">
+                <a href={`mailto:${site.email}`} className="link-underline">
+                  {site.email}
+                </a>
+              </Detail>
+              <Detail label="Telephone">
+                <a href={site.phoneHref} className="link-underline">
+                  {site.phone}
+                </a>
+              </Detail>
+              <Detail label="Office">
+                <address className="not-italic">
+                  {site.address.street}
+                  <br />
+                  {site.address.city}, {site.address.country}
+                </address>
+                <a href={site.mapUrl} target="_blank" rel="noopener noreferrer" className="link-underline mt-2 inline-block text-sm text-muted-foreground">
+                  Get directions
+                </a>
+              </Detail>
+              <Detail label="Hours">
+                <ul className="space-y-1">
+                  {site.hours.map((h) => (
+                    <li key={h.days} className="flex justify-between gap-4">
+                      <span>{h.days}</span>
+                      <span className="font-mono text-sm text-muted-foreground">{h.time}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-3 font-mono text-xs text-muted-foreground">
+                  <LocalTime />
                 </p>
-              </div>
+              </Detail>
+            </dl>
 
-              {/* Contact Cards */}
-              <div className="grid gap-6">
-                <Card className="border-2 border-gray-100 dark:border-gray-800 hover:border-[#AEEA00]/50 transition-all duration-300 group">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#AEEA00]/10 rounded-xl flex items-center justify-center group-hover:bg-[#AEEA00]/20 transition-colors">
-                        <Mail className="w-6 h-6 text-[#AEEA00]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-black dark:text-white mb-1">Email Us</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-2">Send us an email anytime</p>
-                        <a href="mailto:hello@company.com" className="text-[#AEEA00] hover:underline font-medium">
-                          hello@company.com
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 border-gray-100 dark:border-gray-800 hover:border-[#AEEA00]/50 transition-all duration-300 group">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#AEEA00]/10 rounded-xl flex items-center justify-center group-hover:bg-[#AEEA00]/20 transition-colors">
-                        <Phone className="w-6 h-6 text-[#AEEA00]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-black dark:text-white mb-1">Call Us</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-2">Mon-Fri from 8am to 5pm</p>
-                        <a href="tel:+1234567890" className="text-[#AEEA00] hover:underline font-medium">
-                          +1 (234) 567-890
-                        </a>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 border-gray-100 dark:border-gray-800 hover:border-[#AEEA00]/50 transition-all duration-300 group">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#AEEA00]/10 rounded-xl flex items-center justify-center group-hover:bg-[#AEEA00]/20 transition-colors">
-                        <MapPin className="w-6 h-6 text-[#AEEA00]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-black dark:text-white mb-1">Visit Us</h3>
-                        <p className="text-gray-600 dark:text-gray-300 mb-2">Come say hello at our office</p>
-                        <address className="text-[#AEEA00] not-italic">
-                          123 Innovation Street
-                          <br />
-                          Tech District, CA 90210
-                        </address>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2 border-gray-100 dark:border-gray-800 hover:border-[#AEEA00]/50 transition-all duration-300 group">
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-[#AEEA00]/10 rounded-xl flex items-center justify-center group-hover:bg-[#AEEA00]/20 transition-colors">
-                        <Clock className="w-6 h-6 text-[#AEEA00]" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-black dark:text-white mb-1">Business Hours</h3>
-                        <div className="text-gray-600 dark:text-gray-300 space-y-1">
-                          <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                          <p>Saturday: 9:00 AM - 4:00 PM</p>
-                          <p>Sunday: Closed</p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#AEEA00]/10 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <MessageCircle className="w-8 h-8 text-[#AEEA00]" />
-                  </div>
-                  <div className="text-2xl font-bold text-black dark:text-white">24h</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300">Response Time</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#AEEA00]/10 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <Users className="w-8 h-8 text-[#AEEA00]" />
-                  </div>
-                  <div className="text-2xl font-bold text-black dark:text-white">500+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300">Happy Clients</div>
-                </div>
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-[#AEEA00]/10 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                    <Zap className="w-8 h-8 text-[#AEEA00]" />
-                  </div>
-                  <div className="text-2xl font-bold text-black dark:text-white">99%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-300">Satisfaction</div>
-                </div>
-              </div>
+            <div className="relative mt-10 aspect-[4/3] overflow-hidden border border-border bg-muted">
+              <iframe
+                title={`Map showing ${site.name} on ${site.address.street}, ${site.address.city}`}
+                src={site.mapEmbed}
+                className="absolute inset-0 h-full w-full border-0 grayscale-[0.85] dark:[filter:invert(0.9)_hue-rotate(180deg)_grayscale(0.7)]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
+          </aside>
 
-            {/* Contact Form */}
-            <div className="relative">
-              <Card className="relative border-2 border-gray-100 dark:border-gray-800 shadow-2xl">
-                <CardHeader className="pb-6">
-                  <CardTitle className="text-2xl font-bold text-black dark:text-white">Send us a Message</CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">
-                    Fill out the form below and we&lsquo;ll get back to you within 24 hours.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name" className="text-black dark:text-white font-medium">
-                          Full Name
-                        </Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="John Doe"
-                          className="border-2 border-gray-200 dark:border-gray-700 focus:border-[#AEEA00] dark:focus:border-[#AEEA00] transition-colors"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email" className="text-black dark:text-white font-medium">
-                          Email Address
-                        </Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="john@example.com"
-                          className="border-2 border-gray-200 dark:border-gray-700 focus:border-[#AEEA00] dark:focus:border-[#AEEA00] transition-colors"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-black dark:text-white font-medium">
-                        Subject
-                      </Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="What's this about?"
-                        className="border-2 border-gray-200 dark:border-gray-700 focus:border-[#AEEA00] dark:focus:border-[#AEEA00] transition-colors"
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message" className="text-black dark:text-white font-medium">
-                        Message
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tell us more about your project or question..."
-                        rows={6}
-                        className="border-2 border-gray-200 dark:border-gray-700 focus:border-[#AEEA00] dark:focus:border-[#AEEA00] transition-colors resize-none"
-                        required
-                      />
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full bg-[#AEEA00] hover:bg-[#AEEA00]/90 text-black font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg"
-                    >
-                      <Send className="w-5 h-5 mr-2" />
-                      Send Message
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
+          <div className="lg:col-span-7 lg:col-start-6">
+            <h2 className="label border-t border-foreground pb-2 pt-6 text-foreground">Inquiry form</h2>
+            <Suspense fallback={<div className="min-h-[640px]" />}>
+              <ContactForm />
+            </Suspense>
           </div>
         </div>
       </section>
 
-      {/* Bottom CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-[#AEEA00]/5 via-transparent to-[#AEEA00]/5">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-white mb-6">Ready to Get Started?</h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-            Don&lsquo;t wait any longer. Reach out today and let&lsquo;s discuss how we can help bring your vision to life.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-[#AEEA00] hover:bg-[#AEEA00]/90 text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-            >
-              <Mail className="w-5 h-5 mr-2" />
-              Email Us Now
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-[#AEEA00] text-[#AEEA00] hover:bg-[#AEEA00] hover:text-black font-semibold px-8 py-3 rounded-lg transition-all duration-300 bg-transparent"
-            >
-              <Phone className="w-5 h-5 mr-2" />
-              Schedule a Call
-            </Button>
-          </div>
-        </div>
-      </section>
+      <Faq faqs={faqs} />
+    </>
+  )
+}
+
+function Detail({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-[6.5rem_1fr] gap-4 border-b border-border py-5 text-[15px]">
+      <dt className="label pt-1">{label}</dt>
+      <dd>{children}</dd>
     </div>
   )
-} 
+}
